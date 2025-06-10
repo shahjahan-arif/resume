@@ -322,13 +322,7 @@ const ResumeProfile = () => {
                 {/* <span className="text-4xl font-bold text-white font-[family-name:var(--font-orbitron)]">
                   {personalInfo.name.split(' ').map(n => n[0]).join('')}
                 </span> */}
-                <Image
-                  src="/images.jpeg"
-                  alt="Profile picture"
-                  width={128}
-                  height={128}
-                  className="rounded-full"
-                />
+                <img src="./images.jpeg" className="rounded-full" alt="" />
               </div>
             </div>
 
@@ -489,14 +483,14 @@ const ResumeProfile = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {skills.map((skillGroup, index) => (
               <div key={index} className="space-y-3">
-                <h3 className="text-lg font-semibold text-blue-400 font-[family-name:var(--font-space-mono)]">
+                <h3 className="text-lg font-semibold font-[family-name:var(--font-space-mono)]">
                   {skillGroup.category}
                 </h3>
-                <div className="flex flex-wrap gap-2">
+                <div className="flex flex-wrap">
                   {skillGroup.items.map((skill, skillIndex) => (
                     <span
                       key={skillIndex}
-                      className="bg-gray-700 text-gray-200 px-3 py-1 rounded-full text-sm"
+                      className=" text-gray-200 px-3 py-1  text-sm"
                     >
                       {skill}
                     </span>
