@@ -475,29 +475,26 @@ const ResumeProfile = () => {
         </div>
 
         {/* Skills Section */}
-        <div className="bg-black backdrop-blur-sm rounded-xl p-8">
-          <h2 className="text-2xl font-bold text-white mb-6 flex items-center gap-3 font-[family-name:var(--font-orbitron)]">
+        <div className="bg-black backdrop-blur-sm rounded-xl p-6">
+          <h2 className="text-2xl font-bold text-white mb-4 flex items-center gap-3 font-[family-name:var(--font-orbitron)]">
             <Code className="text-blue-400" />
             Technical Skills
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {skills.map((skillGroup, index) => (
-              <div key={index} className="space-y-3">
-                <h3 className="text-lg font-semibold font-[family-name:var(--font-space-mono)]">
-                  {skillGroup.category}
-                </h3>
-                <div className="flex flex-wrap">
-                  {skillGroup.items.map((skill, skillIndex) => (
-                    <span
-                      key={skillIndex}
-                      className=" text-gray-200 px-3 py-1  text-sm"
-                    >
-                      {skill}
-                    </span>
-                  ))}
+          <div className="flex flex-wrap gap-2">
+            {skills.flatMap((skillGroup, groupIndex) => 
+              skillGroup.items.map((skill, skillIndex) => (
+                <div
+                  key={`${groupIndex}-${skillIndex}`}
+                  className="skill-tag"
+                  style={{
+                    animationDelay: `${(groupIndex * skillGroup.items.length + skillIndex) * 50}ms`
+                  }}
+                >
+                  <span className="skill-tag-text">{skill}</span>
+                  <div className="skill-tag-glow"></div>
                 </div>
-              </div>
-            ))}
+              ))
+            )}
           </div>
         </div>
 
