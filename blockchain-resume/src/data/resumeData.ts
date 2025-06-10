@@ -2,7 +2,7 @@
 // Update this file with your personal information
 
 export const personalInfo = {
-  name: "Your Name",
+  name: "Shahjahan Arif",
   title: "Blockchain Developer & Smart Contract Engineer",
   email: "your.email@example.com",
   phone: "+1 (555) 123-4567",
