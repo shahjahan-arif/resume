@@ -1,8 +1,46 @@
-# Blockchain Resume Website
+# 🚀 Blockchain Developer Resume - Next.js + Solana Integration
 
-A modern, blockchain-themed resume website built with Next.js, featuring a Facebook-like profile layout and PDF download functionality.
+A cutting-edge, interactive blockchain developer resume built with Next.js, featuring live Solana wallet integration, smart contract showcases, and real-time trading dashboards.
 
-## Features
+## ✨ Enhanced Features
+
+### 🔗 Solana Wallet Integration
+- **Multi-wallet support**: Phantom, Solflare, Torus, Ledger
+- **Real-time portfolio tracking**: SOL balance, token holdings, transaction history
+- **Live price data**: Integration with CoinGecko API for real-time crypto prices
+- **Interactive charts**: 24-hour price charts using Recharts
+
+### 💼 Smart Contract Portfolio
+- **Contract showcase**: Display of deployed smart contracts with live metrics
+- **Security badges**: Gas optimization and audit status indicators
+- **Interactive testing**: Direct contract interaction from the resume
+- **Performance metrics**: TVL, transaction counts, and success rates
+
+### 🎨 NFT Collection Display
+- **Visual gallery**: Beautiful grid layout with hover effects
+- **Detailed metadata**: Attributes, collection info, and market data
+- **Modal previews**: Full-screen NFT viewing with trait breakdown
+- **Floor price tracking**: Real-time market value estimates
+
+### 📊 Trading Dashboard
+- **Live market data**: Real-time cryptocurrency prices and charts
+- **Portfolio analytics**: P&L tracking, success rates, and trading statistics
+- **Multi-crypto support**: Bitcoin, Ethereum, Solana, and more
+- **Performance visualization**: Interactive charts and trend analysis
+
+### 🛠 Blockchain Development Stats
+- **GitHub integration**: Repository stats, commit history, and language distribution
+- **Technical metrics**: Code quality, test coverage, and security scores
+- **Contribution graphs**: Monthly activity visualization
+- **Achievement showcase**: Certifications, awards, and milestones
+
+### 🎯 Impact Summary
+- **Value metrics**: Total value locked and secured across projects
+- **Security score**: Overall security rating and audit results
+- **Technology expertise**: Skill proficiency bars and ratings
+- **Achievement highlights**: Key accomplishments and recognitions
+
+## Original Features
 
 - 🔗 **Blockchain Theme**: Dark mode with crypto-inspired colors and typography
 - 📱 **Responsive Design**: Works perfectly on desktop and mobile devices

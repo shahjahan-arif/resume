@@ -16,6 +16,15 @@ import {
   Globe,
   Twitter,
 } from "lucide-react";
+// import PortfolioSection from "./PortfolioSection";
+// import NFTShowcase from "./NFTShowcase";
+// import BlockchainStats from "./BlockchainStats";
+// import LiveTradingDashboard from "./LiveTradingDashboard";
+// import SmartContractShowcase from "./SmartContractShowcase";
+import ImpactSummary from "./ImpactSummary";
+import ParticleBackground from "./ParticleBackground";
+import ToastProvider from "./ToastProvider";
+import PortfolioSection from "./PortfolioSection";
 // import html2canvas from "html2canvas";
 // import jsPDF from "jspdf";
 
@@ -278,7 +287,10 @@ const ResumeProfile = () => {
   // };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#38b000] via-[#70e000] to-[#9ef01a]">
+    <div className="min-h-screen bg-gradient-to-br from-[#38b000] via-[#70e000] to-[#9ef01a] matrix-bg relative">
+      {/* Particle Background */}
+      <ParticleBackground />
+      
       {/* Header with download button */}
       <div className="sticky top-0 z-50 bg-black border-b border-gray-700">
         <div className="max-w-4xl mx-auto px-6 py-4 flex justify-between items-center">
@@ -306,7 +318,7 @@ const ResumeProfile = () => {
       </div>
 
       {/* Resume Content */}
-      <div id="resume-content" className="max-w-4xl mx-auto p-6 space-y-6">
+      <div id="resume-content" className="max-w-4xl mx-auto p-6 space-y-6 relative z-10">
         {/* Profile Header - Facebook-like */}
         <div className="bg-black backdrop-blur-sm   overflow-hidden">
           {/* Cover Photo */}
@@ -322,7 +334,13 @@ const ResumeProfile = () => {
                 {/* <span className="text-4xl font-bold text-white font-[family-name:var(--font-orbitron)]">
                   {personalInfo.name.split(' ').map(n => n[0]).join('')}
                 </span> */}
-                <img src="./images.jpeg" className="rounded-full" alt="" />
+                <Image 
+                  src="/images.jpeg" 
+                  alt="Profile" 
+                  width={128} 
+                  height={128} 
+                  className="rounded-full w-full h-full object-cover" 
+                />
               </div>
             </div>
 
@@ -426,37 +444,37 @@ const ResumeProfile = () => {
               {/* Example: <div onClick={() => window.open('https://github.com/yourusername')}> */}
               <div className="flex gap-4">
                 <div
-                  className="flex items-center gap-2 text-gray-300 hover:text-white transition-colors cursor-pointer"
+                  className="flex active:scale-90 items-center gap-2 text-gray-300 hover:text-white transition-colors cursor-pointer"
                   title="GitHub"
                 >
                   <Github size={20} />
                 </div>
                 <div
-                  className="flex items-center gap-2 text-gray-300 hover:text-blue-400 transition-colors cursor-pointer"
+                  className="flex items-center active:scale-90 gap-2 text-gray-300 hover:text-blue-400 transition-colors cursor-pointer"
                   title="LinkedIn"
                 >
                   <Linkedin size={20} />
                 </div>
                 <div
-                  className="flex items-center gap-2 text-gray-300 hover:text-green-400 transition-colors cursor-pointer"
+                  className="flex items-center active:scale-90 gap-2 text-gray-300 hover:text-green-400 transition-colors cursor-pointer"
                   title="Email"
                 >
                   <Mail size={20} />
                 </div>
                 <div
-                  className="flex items-center gap-2 text-gray-300 hover:text-purple-400 transition-colors cursor-pointer"
+                  className="flex items-center active:scale-90 gap-2 text-gray-300 hover:text-purple-400 transition-colors cursor-pointer"
                   title="Phone"
                 >
                   <Phone size={20} />
                 </div>
                 <div
-                  className="flex items-center gap-2 text-gray-300 hover:text-orange-400 transition-colors cursor-pointer"
+                  className="flex items-center active:scale-90 gap-2 text-gray-300 hover:text-orange-400 transition-colors cursor-pointer"
                   title="Website"
                 >
                   <Globe size={20} />
                 </div>
                 <div
-                  className="flex items-center gap-2 text-gray-300 hover:text-sky-400 transition-colors cursor-pointer"
+                  className="flex items-center active:scale-90 gap-2 text-gray-300 hover:text-sky-400 transition-colors cursor-pointer"
                   title="Twitter/X"
                 >
                   <Twitter size={20} />
@@ -485,7 +503,7 @@ const ResumeProfile = () => {
               skillGroup.items.map((skill, skillIndex) => (
                 <div
                   key={`${groupIndex}-${skillIndex}`}
-                  className="skill-tag"
+                  className="skill-tag hover:scale-105"
                   style={{
                     animationDelay: `${(groupIndex * skillGroup.items.length + skillIndex) * 50}ms`
                   }}
@@ -564,7 +582,31 @@ const ResumeProfile = () => {
             ))}
           </div>
         </div>
+
+        {/* Smart Contracts Portfolio */}
+        {/* <SmartContractShowcase /> */}
+
+        {/* Solana Wallet Portfolio Section */}
+        {/* <PortfolioSection /> */}
+
+        {/* NFT Collection Section */}
+        {/* <NFTShowcase /> */}
+
+        {/* Blockchain Development Stats */}
+        {/* <BlockchainStats /> */}
+
+        {/* Live Trading Dashboard */}
+        {/* <LiveTradingDashboard /> */}
+
+        {/* Impact Summary */}
+        <ImpactSummary />
+
+        {/* Solana Wallet Portfolio Section */}
+        <PortfolioSection />
       </div>
+
+      {/* Toast Notifications */}
+      <ToastProvider />
 
       {/* Footer */}
       <div className="max-w-4xl mx-auto px-6 py-8 text-center text-black">

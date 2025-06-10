@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Inter, Space_Mono, Orbitron } from "next/font/google";
+import { WalletContextProvider } from "@/contexts/WalletContext";
 import "./globals.css";
+import "./enhanced-styles.css";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -33,7 +35,9 @@ export default function RootLayout({
       <body
         className={`${inter.variable} ${spaceMono.variable} ${orbitron.variable} antialiased`}
       >
-        {children}
+        <WalletContextProvider>
+          {children}
+        </WalletContextProvider>
       </body>
     </html>
   );
