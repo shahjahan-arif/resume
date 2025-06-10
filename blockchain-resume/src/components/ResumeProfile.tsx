@@ -1,8 +1,9 @@
 "use client";
 
 import React from "react";
+import Image from "next/image";
 import {
-  Download,
+  // Download,
   Github,
   Linkedin,
   Mail,
@@ -12,17 +13,76 @@ import {
   Award,
   Briefcase,
   GraduationCap,
+  Globe,
+  Twitter,
 } from "lucide-react";
-import html2canvas from "html2canvas";
-import jsPDF from "jspdf";
+// import html2canvas from "html2canvas";
+// import jsPDF from "jspdf";
 
 const ResumeProfile = () => {
-  const [isDownloading, setIsDownloading] = React.useState(false);
+  // const [isDownloading, setIsDownloading] = React.useState(false);
+
+  // Helper function to get status styling
+  const getStatusStyling = (statusType: string) => {
+    switch (statusType) {
+      case "OPEN_TO_WORK":
+        return {
+          bgColor: "bg-green-600",
+          borderColor: "",
+          textColor: "text-green-100",
+          icon: "🟢",
+        };
+      case "HIRING":
+        return {
+          bgColor: "bg-blue-600",
+          borderColor: "border-blue-500",
+          textColor: "text-blue-100",
+          icon: "📢",
+        };
+      case "EMPLOYED":
+        return {
+          bgColor: "bg-gray-600",
+          borderColor: "border-gray-500",
+          textColor: "text-gray-100",
+          icon: "💼",
+        };
+      case "FREELANCING":
+        return {
+          bgColor: "bg-purple-600",
+          borderColor: "border-purple-500",
+          textColor: "text-purple-100",
+          icon: "🚀",
+        };
+      case "LOOKING_FOR_OPPORTUNITIES":
+        return {
+          bgColor: "bg-orange-600",
+          borderColor: "border-orange-500",
+          textColor: "text-orange-100",
+          icon: "🔍",
+        };
+      default:
+        return {
+          bgColor: "bg-gray-600",
+          borderColor: "border-gray-500",
+          textColor: "text-gray-100",
+          icon: "ℹ️",
+        };
+    }
+  };
 
   // Resume data - will be moved back to external file once import issue is resolved
   const personalInfo = {
     name: "Shahjahan Arif",
     title: "M.A.R.N STACK | NEXT | MONOREPO | BLOCKCHAIN ENGINEER",
+    company: "CryptoTech Solutions",
+    companyLogo: "/vercel.svg", // You can replace this with your company's logo
+    university: "Virtaul University",
+    universityLogo: "/vu.png", // You can replace this with your university's logo
+    status: {
+      type: "OPEN_TO_WORK", // Options: "OPEN_TO_WORK", "HIRING", "EMPLOYED", "FREELANCING", "LOOKING_FOR_OPPORTUNITIES"
+      text: "Open to work",
+      subtitle: "Blockchain Developer & Full Stack Engineer roles",
+    },
     email: "shajandevz@gmail.com",
     phone: "+92 (328) 4102931",
     location: "Lahore, Pakistan",
@@ -88,40 +148,34 @@ const ResumeProfile = () => {
 
   const experience = [
     {
-      company: "CryptoTech Solutions",
-      position: "Senior Blockchain Developer",
-      duration: "2022 - Present",
+      company: "RvWhale",
+      position: "Frontend Engineer",
+      duration: "2024 - 05/2024",
       description:
-        "Led development of DeFi protocols processing $50M+ in transactions. Built and deployed 20+ smart contracts on Ethereum mainnet.",
+        "Wholesale Whale is an online platform designed for buying and selling used recreational vehicles (RVs), boats, and powersports products. It caters to dealerships, offering them a streamlined way to trade these items within the industry. The platform was founded by David Karstens, who previously served as a CTO for a multi-store RV dealership. His expertise helped shape the website to address the needs of dealerships more effectively​",
     },
     {
-      company: "BlockChain Innovations",
-      position: "Smart Contract Developer",
-      duration: "2020 - 2022",
+      company: "Devzbyte",
+      position: "MERN | BLOCKCHAIN ENGINEER",
+      duration: "09/2020 - 08/2024",
       description:
-        "Developed NFT marketplace and tokenization platform. Implemented gas-optimized contracts reducing transaction costs by 40%.",
+        "I worked at Devzbyte company for three years, primarily as a frontend developer, but I also handled some backend tasks. I also completed my internship there. I have built many web-based projects using blockchain technologies, most of which were for Arweave company on a contract basis. We all worked together like a family.",
     },
-    {
-      company: "Web3 Startup",
-      position: "Full Stack Developer",
-      duration: "2019 - 2020",
-      description:
-        "Built web3 applications integrating with multiple blockchain networks. Created user-friendly interfaces for complex DeFi protocols.",
-    },
+  
   ];
 
   const education = [
     {
       degree: "Master of Science in Computer Science",
-      school: "Stanford University",
-      year: "2019",
-      specialization: "Distributed Systems & Cryptography",
+      school: "Virtual University of Pakistan",
+      year: "2022 to 2027",
+      specialization: "Blockchain Technology and Distributed Systems",
     },
     {
-      degree: "Bachelor of Science in Software Engineering",
-      school: "UC Berkeley",
-      year: "2017",
-      specialization: "Blockchain & Cryptocurrency",
+      degree: "2 Years Diploma in Blockchain Development",
+      school: "Blockchain Academy",
+      year: "2020 to 2022",
+      specialization: "Blockchain Development",
     },
   ];
 
@@ -132,87 +186,96 @@ const ResumeProfile = () => {
     "Speaker at Blockchain Summit 2023",
     "Certified Solidity Developer",
     "AWS Solutions Architect",
+    "GitHub Star for open source contributions",
+    "Top 10% in Blockchain Developer Bootcamp",
+    "Contributed to 5+ open source blockchain projects",
+    "reactjs.org Community Contributor",
+    "web3.js Core Contributor",
+    "c++ Developer Certification",
+    "Certified Full Stack Developer",
+    "rust-lang.org Community Contributor",
+ 
   ];
 
-  const downloadPDF = async () => {
-    try {
-      setIsDownloading(true);
-      console.log("Starting PDF download...");
+  // const downloadPDF = async () => {
+  //   try {
+  //     setIsDownloading(true);
+  //     console.log("Starting PDF download...");
 
-      const element = document.getElementById("resume-content");
-      if (!element) {
-        console.error("Resume content element not found");
-        alert("Error: Resume content not found");
-        return;
-      }
+  //     const element = document.getElementById("resume-content");
+  //     if (!element) {
+  //       console.error("Resume content element not found");
+  //       alert("Error: Resume content not found");
+  //       return;
+  //     }
 
-      console.log("Capturing canvas...");
+  //     console.log("Capturing canvas...");
 
-      // Create canvas with better options
-      const canvas = await html2canvas(element, {
-        useCORS: true,
-        backgroundColor: "#0a0b0d",
-        removeContainer: true,
-        imageTimeout: 0,
-        logging: false,
-      } as any);
+  //     // Create canvas with better options
+  //     const canvas = await html2canvas(element, {
+  //       useCORS: true,
+  //       backgroundColor: "#0a0b0d",
+  //       removeContainer: true,
+  //       imageTimeout: 0,
+  //       logging: false,
+  //     } as any);
 
-      console.log("Canvas captured, creating PDF...");
-      const imgData = canvas.toDataURL("image/png", 1.0);
+  //     console.log("Canvas captured, creating PDF...");
+  //     const imgData = canvas.toDataURL("image/png", 1.0);
 
-      const pdf = new jsPDF({
-        orientation: "portrait",
-        unit: "mm",
-        format: "a4",
-      });
+  //     const pdf = new jsPDF({
+  //       orientation: "portrait",
+  //       unit: "mm",
+  //       format: "a4",
+  //     });
 
-      // Calculate dimensions to fit the page
-      const pdfWidth = pdf.internal.pageSize.getWidth();
-      const pdfHeight = pdf.internal.pageSize.getHeight();
+  //     // Calculate dimensions to fit the page
+  //     const pdfWidth = pdf.internal.pageSize.getWidth();
+  //     const pdfHeight = pdf.internal.pageSize.getHeight();
 
-      const imgWidth = pdfWidth - 20; // 10mm margin on each side
-      const imgHeight = (canvas.height * imgWidth) / canvas.width;
+  //     const imgWidth = pdfWidth - 20; // 10mm margin on each side
+  //     const imgHeight = (canvas.height * imgWidth) / canvas.width;
 
-      let heightLeft = imgHeight;
-      let position = 10; // 10mm top margin
+  //     let heightLeft = imgHeight;
+  //     let position = 10; // 10mm top margin
 
-      // Add first page
-      pdf.addImage(imgData, "PNG", 10, position, imgWidth, imgHeight);
-      heightLeft -= pdfHeight - 20; // Account for margins
+  //     // Add first page
+  //     pdf.addImage(imgData, "PNG", 10, position, imgWidth, imgHeight);
+  //     heightLeft -= pdfHeight - 20; // Account for margins
 
-      // Add additional pages if needed
-      while (heightLeft >= 0) {
-        position = heightLeft - imgHeight + 10; // 10mm margin
-        pdf.addPage();
-        pdf.addImage(imgData, "PNG", 10, position, imgWidth, imgHeight);
-        heightLeft -= pdfHeight - 20;
-      }
+  //     // Add additional pages if needed
+  //     while (heightLeft >= 0) {
+  //       position = heightLeft - imgHeight + 10; // 10mm margin
+  //       pdf.addPage();
+  //       pdf.addImage(imgData, "PNG", 10, position, imgWidth, imgHeight);
+  //       heightLeft -= pdfHeight - 20;
+  //     }
 
-      console.log("Saving PDF...");
-      pdf.save(
-        `${personalInfo.name.replace(/\s+/g, "-").toLowerCase()}-resume.pdf`
-      );
-      console.log("PDF download completed!");
-    } catch (error) {
-      console.error("Error downloading PDF:", error);
+  //     console.log("Saving PDF...");
+  //     pdf.save(
+  //       `${personalInfo.name.replace(/\s+/g, "-").toLowerCase()}-resume.pdf`
+  //     );
+  //     console.log("PDF download completed!");
+  //   } catch (error) {
+  //     console.error("Error downloading PDF:", error);
 
-      // Fallback: show print dialog
-      if (
-        confirm(
-          "PDF generation failed. Would you like to use the browser print function instead?"
-        )
-      ) {
-        window.print();
-      }
-    } finally {
-      setIsDownloading(false);
-    }
-  };
+  //     // Fallback: show print dialog
+  //     if (
+  //       confirm(
+  //         "PDF generation failed. Would you like to use the browser print function instead?"
+  //       )
+  //     ) {
+  //       window.print();
+  //     }
+  //   } finally {
+  //     setIsDownloading(false);
+  //   }
+  // };
 
   // Alternative simple download using browser print
-  const downloadSimplePDF = () => {
-    window.print();
-  };
+  // const downloadSimplePDF = () => {
+  //   window.print();
+  // };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#38b000] via-[#70e000] to-[#9ef01a]">
@@ -222,7 +285,7 @@ const ResumeProfile = () => {
           <h1 className="text-xl font-bold text-white font-[family-name:var(--font-orbitron)]">
             Blockchain Dev
           </h1>
-          <div className="flex gap-2">
+          {/* <div className="flex gap-2">
             <button
               onClick={downloadPDF}
               disabled={isDownloading}
@@ -238,7 +301,7 @@ const ResumeProfile = () => {
             >
               Print
             </button>
-          </div>
+          </div> */}
         </div>
       </div>
 
@@ -255,19 +318,96 @@ const ResumeProfile = () => {
           <div className="relative px-8 pb-8">
             {/* Profile Picture */}
             <div className="absolute -top-16 left-8">
-              <div className="w-32 h-32 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 b flex items-center justify-center">
+              <div className="w-32 h-32 rounded-full bg-gradient-to-br from-blue-500 border-4 to-purple-600 b flex items-center justify-center">
                 {/* <span className="text-4xl font-bold text-white font-[family-name:var(--font-orbitron)]">
                   {personalInfo.name.split(' ').map(n => n[0]).join('')}
                 </span> */}
-                <img src="./images.jpeg" className="rounded-full" alt="" />
+                <Image
+                  src="/images.jpeg"
+                  alt="Profile picture"
+                  width={128}
+                  height={128}
+                  className="rounded-full"
+                />
               </div>
             </div>
 
             {/* Name and Title */}
             <div className="pt-20">
-              <h1 className="text-4xl font-bold text-white mb-2 font-[family-name:var(--font-orbitron)]">
-                {personalInfo.name}
-              </h1>
+              <div className="flex justify-between items-center">
+                <div>
+                  <h1 className="text-4xl font-bold text-white mb-2 font-[family-name:var(--font-orbitron)]">
+                    {personalInfo.name}
+                  </h1>
+
+                  {/* Company/Organization - LinkedIn style */}
+                  <div className="flex items-center gap-3 mb-3">
+                    {personalInfo.status?.type === "OPEN_TO_WORK" ? (
+                      // Show university when open to work
+                      <>
+                        <div className="w-8 h-8 rounded-md bg-white p-1 flex items-center justify-center">
+                          <Image
+                            src={personalInfo.universityLogo}
+                            alt={`${personalInfo.university} logo`}
+                            width={24}
+                            height={24}
+                            className="object-contain"
+                          />
+                        </div>
+                        <p className="text-lg text-gray-300 font-medium">
+                          {personalInfo.university}
+                        </p>
+                      </>
+                    ) : (
+                      // Show company for other statuses
+                      <>
+                        <div className="w-8 h-8 rounded-md bg-white p-1 flex items-center justify-center">
+                          <Image
+                            src={personalInfo.companyLogo}
+                            alt={`${personalInfo.company} logo`}
+                            width={24}
+                            height={24}
+                            className="object-contain"
+                          />
+                        </div>
+                        <p className="text-lg text-gray-300 font-medium">
+                          {personalInfo.company}
+                        </p>
+                      </>
+                    )}
+                  </div>
+                </div>
+
+                {/* Status Badge - LinkedIn style */}
+                {personalInfo.status && (
+                  <div className="mb-4">
+                    <div
+                      className={`inline-flex items-center gap-2 px-4 py-2 rounded-lg ${
+                        getStatusStyling(personalInfo.status.type).bgColor
+                      } ${
+                        getStatusStyling(personalInfo.status.type).borderColor
+                      } border-2 ${
+                        getStatusStyling(personalInfo.status.type).textColor
+                      }`}
+                    >
+                      <span className="text-sm">
+                        {getStatusStyling(personalInfo.status.type).icon}
+                      </span>
+                      <div className="flex flex-col">
+                        <span className="font-semibold text-sm">
+                          {personalInfo.status.text}
+                        </span>
+                        {personalInfo.status.subtitle && (
+                          <span className="text-xs opacity-90">
+                            {personalInfo.status.subtitle}
+                          </span>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                )}
+              </div>
+
               <p className="text-xl mb-4 font-[family-name:var(--font-space-mono)]">
                 {personalInfo.title}
               </p>
@@ -288,22 +428,45 @@ const ResumeProfile = () => {
                 </div>
               </div>
 
-              {/* Social Links */}
+              {/* Social Links - Add onClick handlers or wrap with <a> tags to make them functional */}
+              {/* Example: <div onClick={() => window.open('https://github.com/yourusername')}> */}
               <div className="flex gap-4">
-                <a
-                  href={`https://${personalInfo.github}`}
-                  className="flex items-center gap-2 bg-gray-700 hover:bg-gray-600 px-4 py-2 rounded-lg transition-colors"
+                <div
+                  className="flex items-center gap-2 text-gray-300 hover:text-white transition-colors cursor-pointer"
+                  title="GitHub"
                 >
-                  <Github size={16} />
-                  <span>GitHub</span>
-                </a>
-                <a
-                  href={`https://${personalInfo.linkedin}`}
-                  className="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-lg transition-colors"
+                  <Github size={20} />
+                </div>
+                <div
+                  className="flex items-center gap-2 text-gray-300 hover:text-blue-400 transition-colors cursor-pointer"
+                  title="LinkedIn"
                 >
-                  <Linkedin size={16} />
-                  <span>LinkedIn</span>
-                </a>
+                  <Linkedin size={20} />
+                </div>
+                <div
+                  className="flex items-center gap-2 text-gray-300 hover:text-green-400 transition-colors cursor-pointer"
+                  title="Email"
+                >
+                  <Mail size={20} />
+                </div>
+                <div
+                  className="flex items-center gap-2 text-gray-300 hover:text-purple-400 transition-colors cursor-pointer"
+                  title="Phone"
+                >
+                  <Phone size={20} />
+                </div>
+                <div
+                  className="flex items-center gap-2 text-gray-300 hover:text-orange-400 transition-colors cursor-pointer"
+                  title="Website"
+                >
+                  <Globe size={20} />
+                </div>
+                <div
+                  className="flex items-center gap-2 text-gray-300 hover:text-sky-400 transition-colors cursor-pointer"
+                  title="Twitter/X"
+                >
+                  <Twitter size={20} />
+                </div>
               </div>
             </div>
           </div>
