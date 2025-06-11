@@ -199,6 +199,15 @@ const ResumeProfile = () => {
   return (
     <div className="h-screen overflow-auto relative">
 
+      {/* Lightning Strike Container */}
+      <div className="lightning-container">
+        <div className="screen-flash"></div>
+        <div className="screen-flash"></div>
+        <div className="screen-flash"></div>
+        <div className="lightning-bolt"></div>
+        <div className="lightning-bolt"></div>
+        <div className="lightning-bolt"></div>
+      </div>
 
       {/* Header with download button */}
       <div className="sticky top-0 z-50 bg-white border-b border-gray-300">
@@ -214,7 +223,7 @@ const ResumeProfile = () => {
         {/* Profile Header - Facebook-like */}
         <div className="bg-white border border-gray-200 overflow-hidden">
           {/* Cover Photo */}
-          <div className="h-36 bg-[#20a21c] relative">
+          <div className="h-36 bg-[#20a21c] relative horror-cover lightning-enhanced">
             <div className="absolute inset-0 opacity-30"></div>
           </div>
 
