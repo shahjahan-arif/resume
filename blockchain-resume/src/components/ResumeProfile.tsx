@@ -293,7 +293,7 @@ const ResumeProfile = () => {
       
       {/* Header with download button */}
       <div className="sticky top-0 z-50 bg-black border-b border-gray-700">
-        <div className="max-w-4xl mx-auto px-6 py-4 flex justify-between items-center">
+        <div className="w-[90%] mx-auto px-6 py-4 flex justify-between items-center">
           <h1 className="text-xl font-bold text-white font-[family-name:var(--font-orbitron)]">
             Blockchain Dev
           </h1>
@@ -318,7 +318,7 @@ const ResumeProfile = () => {
       </div>
 
       {/* Resume Content */}
-      <div id="resume-content" className="max-w-4xl mx-auto p-6 space-y-6 relative z-10">
+      <div id="resume-content" className="mx-auto space-y-6 relative z-10">
         {/* Profile Header - Facebook-like */}
         <div className="bg-black backdrop-blur-sm   overflow-hidden">
           {/* Cover Photo */}
