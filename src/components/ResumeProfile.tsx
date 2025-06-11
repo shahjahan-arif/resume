@@ -411,7 +411,7 @@ const ResumeProfile = () => {
               </div>
             </div>
             {/* Education Section */}
-            <div className="bg-white border border-gray-200 rounded-lg p-4">
+            <div className="bg-white border border-gray-200 rounded-lg p-4 mb-5">
               <h2 className="text-lg font-bold text-black mb-3 flex items-center gap-2 font-[family-name:var(--font-orbitron)]">
                 <GraduationCap className="text-black" size={18} />
                 Education
@@ -437,7 +437,7 @@ const ResumeProfile = () => {
               </div>
             </div>
           </div>
-          <div className="lg:col-span-6 md:col-span-5  space-y-4">
+          <div className="lg:col-span-6 md:col-span-5 space-y-4 sm:mt-4">
             {/* Experience Section */}
             <div className="bg-white border border-gray-200 rounded-lg p-4">
               <h2 className="text-lg font-bold text-black mb-4 flex items-center gap-2 font-[family-name:var(--font-orbitron)]">
