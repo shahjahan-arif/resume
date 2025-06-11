@@ -17,10 +17,10 @@ import {
   Twitter,
 } from "lucide-react";
 // import PortfolioSection from "./PortfolioSection";
-// import NFTShowcase from "./NFTShowcase";
-// import BlockchainStats from "./BlockchainStats";
-// import LiveTradingDashboard from "./LiveTradingDashboard";
-// import SmartContractShowcase from "./SmartContractShowcase";
+import NFTShowcase from "./NFTShowcase";
+import BlockchainStats from "./BlockchainStats";
+import LiveTradingDashboard from "./LiveTradingDashboard";
+import SmartContractShowcase from "./SmartContractShowcase";
 import ImpactSummary from "./ImpactSummary";
 import ParticleBackground from "./ParticleBackground";
 import ToastProvider from "./ToastProvider";
@@ -584,25 +584,22 @@ const ResumeProfile = () => {
         </div>
 
         {/* Smart Contracts Portfolio */}
-        {/* <SmartContractShowcase /> */}
-
-        {/* Solana Wallet Portfolio Section */}
-        {/* <PortfolioSection /> */}
-
-        {/* NFT Collection Section */}
-        {/* <NFTShowcase /> */}
-
-        {/* Blockchain Development Stats */}
-        {/* <BlockchainStats /> */}
-
-        {/* Live Trading Dashboard */}
-        {/* <LiveTradingDashboard /> */}
-
-        {/* Impact Summary */}
-        <ImpactSummary />
+        <SmartContractShowcase />
 
         {/* Solana Wallet Portfolio Section */}
         <PortfolioSection />
+
+        {/* NFT Collection Section */}
+        <NFTShowcase />
+
+        {/* Blockchain Development Stats */}
+        <BlockchainStats />
+
+        {/* Live Trading Dashboard */}
+        <LiveTradingDashboard />
+
+        {/* Impact Summary */}
+        <ImpactSummary />
       </div>
 
       {/* Toast Notifications */}

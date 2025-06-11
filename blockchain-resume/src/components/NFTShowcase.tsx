@@ -1,7 +1,8 @@
 "use client";
 
-import React, { useState, useEffect } from 'react';
-import { useWallet, useConnection } from '@solana/wallet-adapter-react';
+import React, { useState, useEffect, useMemo } from 'react';
+import { useWallet } from '@solana/wallet-adapter-react';
+import Image from 'next/image';
 import { 
   Image as ImageIcon, 
   ExternalLink, 
@@ -10,7 +11,6 @@ import {
   Calendar,
   DollarSign
 } from 'lucide-react';
-import Image from 'next/image';
 
 interface NFT {
   mint: string;
@@ -25,13 +25,12 @@ interface NFT {
 
 const NFTShowcase: React.FC = () => {
   const { publicKey, connected } = useWallet();
-  const { connection } = useConnection();
   const [nfts, setNfts] = useState<NFT[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
   const [selectedNFT, setSelectedNFT] = useState<NFT | null>(null);
 
-  // Mock NFT data for demonstration
-  const mockNFTs: NFT[] = [
+  // Mock NFT data for demonstration - memoized to prevent re-creation on every render
+  const mockNFTs: NFT[] = useMemo(() => [
     {
       mint: 'DRiP2Pn2K6fuMLKQmt5rZWxa91TAGNSz',
       name: 'Solana Monkey #1337',
@@ -89,7 +88,7 @@ const NFTShowcase: React.FC = () => {
       lastSale: 2.0,
       floorPrice: 1.5
     }
-  ];
+  ], []);
 
   useEffect(() => {
     if (!connected || !publicKey) {
@@ -176,9 +175,11 @@ const NFTShowcase: React.FC = () => {
                 onClick={() => setSelectedNFT(nft)}
               >
                 <div className="aspect-square relative overflow-hidden">
-                  <img
+                  <Image
                     src={nft.image}
                     alt={nft.name}
+                    width={400}
+                    height={400}
                     className="w-full h-full object-cover transition-transform duration-300 hover:scale-110"
                   />
                   <div className="absolute top-2 right-2">
@@ -229,9 +230,11 @@ const NFTShowcase: React.FC = () => {
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                 {/* Image */}
                 <div className="aspect-square rounded-xl overflow-hidden">
-                  <img
+                  <Image
                     src={selectedNFT.image}
                     alt={selectedNFT.name}
+                    width={600}
+                    height={600}
                     className="w-full h-full object-cover"
                   />
                 </div>

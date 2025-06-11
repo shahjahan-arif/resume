@@ -15,6 +15,7 @@ import {
 } from 'lucide-react';
 // Temporarily disable recharts until we fix the SSR issue
 // import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, BarChart, Bar } from 'recharts';
+import { DynamicLineChart, DynamicBarChart } from './DynamicChart';
 
 interface GitHubStats {
   totalRepos: number;
@@ -34,7 +35,7 @@ interface BlockchainMetrics {
 }
 
 const BlockchainStats: React.FC = () => {
-  const [githubStats, setGithubStats] = useState<GitHubStats>({
+  const githubStats: GitHubStats = {
     totalRepos: 47,
     totalStars: 234,
     totalCommits: 1847,
@@ -46,36 +47,36 @@ const BlockchainStats: React.FC = () => {
       { name: 'Solidity', percentage: 15, color: '#627EEA' },
       { name: 'Python', percentage: 5, color: '#3776AB' },
     ]
-  });
+  };
 
-  const [blockchainMetrics, setBlockchainMetrics] = useState<BlockchainMetrics>({
+  const blockchainMetrics: BlockchainMetrics = {
     totalTransactions: 15847,
     totalValueLocked: 2400000,
     contractsDeployed: 23,
     gasOptimization: 94.5,
     securityScore: 98.2,
     networkUptime: 99.97
-  });
+  };
 
-  const [contributionData, setContributionData] = useState<Array<{ month: string; contributions: number }>>([]);
-  const [performanceData, setPerformanceData] = useState<Array<{ metric: string; value: number; target: number }>>([]);
+  const [contributionData, setContributionData] = useState<Array<{ name: string; contributions: number }>>([]);
+  const [performanceData, setPerformanceData] = useState<Array<{ name: string; value: number; target: number }>>([]);
 
   useEffect(() => {
     // Mock contribution data for the last 12 months
     const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
     const mockContributions = months.map(month => ({
-      month,
+      name: month,
       contributions: Math.floor(Math.random() * 100) + 50
     }));
     setContributionData(mockContributions);
 
     // Mock performance metrics
     const mockPerformance = [
-      { metric: 'Code Quality', value: 95, target: 90 },
-      { metric: 'Test Coverage', value: 88, target: 80 },
-      { metric: 'Security', value: 98, target: 95 },
-      { metric: 'Performance', value: 92, target: 85 },
-      { metric: 'Documentation', value: 87, target: 80 },
+      { name: 'Code Quality', value: 95, target: 90 },
+      { name: 'Test Coverage', value: 88, target: 80 },
+      { name: 'Security', value: 98, target: 95 },
+      { name: 'Performance', value: 92, target: 85 },
+      { name: 'Documentation', value: 87, target: 80 },
     ];
     setPerformanceData(mockPerformance);
   }, []);
@@ -158,51 +159,22 @@ const BlockchainStats: React.FC = () => {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           <div className="lg:col-span-2">
             <h3 className="text-lg font-semibold text-white mb-4">Monthly Contributions</h3>
-            <div className="h-64 bg-gray-800/50 rounded-lg p-4">
-              <ResponsiveContainer width="100%" height="100%">
-                <LineChart data={contributionData}>
-                  <CartesianGrid strokeDasharray="3 3" stroke="#374151" />
-                  <XAxis dataKey="month" stroke="#9CA3AF" />
-                  <YAxis stroke="#9CA3AF" />
-                  <Tooltip 
-                    contentStyle={{ 
-                      backgroundColor: '#1F2937', 
-                      border: '1px solid #374151',
-                      borderRadius: '8px'
-                    }}
-                  />
-                  <Line 
-                    type="monotone" 
-                    dataKey="contributions" 
-                    stroke="#06B6D4" 
-                    strokeWidth={3}
-                    dot={{ fill: '#06B6D4', strokeWidth: 2, r: 4 }}
-                  />
-                </LineChart>
-              </ResponsiveContainer>
-            </div>
+            <DynamicLineChart 
+              data={contributionData} 
+              dataKey="contributions" 
+              stroke="#06b6d4" 
+              className="h-64"
+            />
           </div>
 
           <div>
             <h3 className="text-lg font-semibold text-white mb-4">Performance Metrics</h3>
-            <div className="h-64 bg-gray-800/50 rounded-lg p-4">
-              <ResponsiveContainer width="100%" height="100%">
-                <BarChart data={performanceData} layout="horizontal">
-                  <CartesianGrid strokeDasharray="3 3" stroke="#374151" />
-                  <XAxis type="number" domain={[0, 100]} stroke="#9CA3AF" />
-                  <YAxis dataKey="metric" type="category" stroke="#9CA3AF" width={80} />
-                  <Tooltip 
-                    contentStyle={{ 
-                      backgroundColor: '#1F2937', 
-                      border: '1px solid #374151',
-                      borderRadius: '8px'
-                    }}
-                  />
-                  <Bar dataKey="value" fill="#8B5CF6" />
-                  <Bar dataKey="target" fill="#374151" />
-                </BarChart>
-              </ResponsiveContainer>
-            </div>
+            <DynamicBarChart 
+              data={performanceData} 
+              dataKey="value" 
+              fill="#8b5cf6"
+              className="h-64"
+            />
           </div>
         </div>
       </div>

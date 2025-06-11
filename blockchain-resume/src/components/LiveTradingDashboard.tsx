@@ -4,14 +4,16 @@ import React, { useState, useEffect } from 'react';
 import { 
   TrendingUp, 
   TrendingDown, 
-  DollarSign, 
+//   DollarSign, 
   BarChart3,
-  Zap,
+//   Zap,
   Coins,
-  Timer,
-  Target
+//   Timer,
+//   Target
 } from 'lucide-react';
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
+// Temporarily disable recharts until we fix the SSR issue
+// import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
+import { DynamicAreaChart } from './DynamicChart';
 import axios from 'axios';
 
 interface CryptoPrice {
@@ -28,9 +30,10 @@ interface CryptoPrice {
 }
 
 interface PricePoint {
-  time: string;
+  name: string;
   price: number;
   volume: number;
+  [key: string]: string | number;
 }
 
 const LiveTradingDashboard: React.FC = () => {
@@ -38,23 +41,29 @@ const LiveTradingDashboard: React.FC = () => {
   const [selectedCrypto, setSelectedCrypto] = useState<string>('solana');
   const [priceHistory, setPriceHistory] = useState<PricePoint[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
-  const [lastUpdate, setLastUpdate] = useState<Date>(new Date());
-
-  // Featured cryptocurrencies to track
-  const featuredCryptos = ['solana', 'bitcoin', 'ethereum', 'cardano', 'polygon-pos', 'chainlink'];
+//   const [lastUpdate, setLastUpdate] = useState<Date>(new Date());
+//   const [isClient, setIsClient] = useState<boolean>(false);
 
   // Mock trading statistics
-  const tradingStats = {
-    totalTrades: 1247,
-    successRate: 87.3,
-    totalProfitLoss: 15847.50,
-    avgHoldTime: '4.2 days',
-    bestTrade: 2340.00,
-    winStreak: 12
-  };
+//   const tradingStats = {
+//     totalTrades: 1247,
+//     successRate: 87.3,
+//     totalProfitLoss: 15847.50,
+//     avgHoldTime: '4.2 days',
+//     bestTrade: 2340.00,
+//     winStreak: 12
+//   };
+
+  // Ensure we're on the client side to avoid hydration issues
+//   useEffect(() => {
+//     setIsClient(true);
+//   }, []);
 
   // Fetch crypto prices
   useEffect(() => {
+    // Featured cryptocurrencies to track
+    const featuredCryptos = ['solana', 'bitcoin', 'ethereum', 'cardano', 'polygon-pos', 'chainlink'];
+    
     const fetchCryptoPrices = async () => {
       try {
         setLoading(true);
@@ -63,7 +72,7 @@ const LiveTradingDashboard: React.FC = () => {
         );
         
         setCryptoPrices(response.data);
-        setLastUpdate(new Date());
+        // setLastUpdate(new Date());
       } catch (error) {
         console.error('Error fetching crypto prices:', error);
         // Fallback mock data
@@ -131,7 +140,7 @@ const LiveTradingDashboard: React.FC = () => {
         const volume = Math.random() * 1000000 + 500000;
 
         history.push({
-          time: time.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' }),
+          name: time.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' }),
           price: Number(price.toFixed(2)),
           volume: Number(volume.toFixed(0))
         });
@@ -154,7 +163,8 @@ const LiveTradingDashboard: React.FC = () => {
     }).format(amount);
   };
 
-  const formatLargeNumber = (num: number) => {
+  const formatLargeNumber = (num?: number) => {
+    if (typeof num !== 'number' || isNaN(num)) return '$0.00';
     if (num >= 1e12) return `$${(num / 1e12).toFixed(2)}T`;
     if (num >= 1e9) return `$${(num / 1e9).toFixed(2)}B`;
     if (num >= 1e6) return `$${(num / 1e6).toFixed(2)}M`;
@@ -170,7 +180,7 @@ const LiveTradingDashboard: React.FC = () => {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="bg-black backdrop-blur-sm rounded-xl p-8">
+      {/* <div className="bg-black backdrop-blur-sm rounded-xl p-8">
         <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-6">
           <h2 className="text-2xl font-bold text-white mb-4 md:mb-0 flex items-center gap-3 font-[family-name:var(--font-orbitron)]">
             <BarChart3 className="text-yellow-400" />
@@ -178,11 +188,11 @@ const LiveTradingDashboard: React.FC = () => {
           </h2>
           <div className="flex items-center gap-2 text-sm text-gray-400">
             <Timer size={16} />
-            Last updated: {lastUpdate.toLocaleTimeString()}
+            Last updated: {isClient ? lastUpdate.toLocaleTimeString() : '--:--:--'}
           </div>
         </div>
 
-        {/* Trading Stats */}
+
         <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-4 mb-8">
           <div className="bg-gradient-to-r from-green-600/20 to-emerald-600/20 p-4 rounded-lg border border-green-500/30">
             <div className="flex items-center gap-2 mb-2">
@@ -236,7 +246,7 @@ const LiveTradingDashboard: React.FC = () => {
             <div className="text-xl font-bold text-white">{tradingStats.winStreak}</div>
           </div>
         </div>
-      </div>
+      </div> */}
 
       {/* Crypto Prices Grid */}
       <div className="bg-black backdrop-blur-sm rounded-xl p-8">
@@ -335,32 +345,13 @@ const LiveTradingDashboard: React.FC = () => {
             </div>
           </div>
           
-          <div className="h-80 bg-gray-800/50 rounded-lg p-4">
-            <ResponsiveContainer width="100%" height="100%">
-              <LineChart data={priceHistory}>
-                <CartesianGrid strokeDasharray="3 3" stroke="#374151" />
-                <XAxis dataKey="time" stroke="#9CA3AF" />
-                <YAxis stroke="#9CA3AF" />
-                <Tooltip 
-                  contentStyle={{ 
-                    backgroundColor: '#1F2937', 
-                    border: '1px solid #374151',
-                    borderRadius: '8px'
-                  }}
-                  formatter={(value, name) => [
-                    name === 'price' ? formatCurrency(Number(value)) : formatLargeNumber(Number(value)),
-                    name === 'price' ? 'Price' : 'Volume'
-                  ]}
-                />
-                <Line 
-                  type="monotone" 
-                  dataKey="price" 
-                  stroke="#F59E0B" 
-                  strokeWidth={2}
-                  dot={false}
-                />
-              </LineChart>
-            </ResponsiveContainer>
+          <div className="h-80">
+            <DynamicAreaChart 
+              data={priceHistory} 
+              dataKey="price" 
+              stroke="#f59e0b" 
+              className="h-full"
+            />
           </div>
         </div>
       )}

@@ -1,7 +1,6 @@
 @import "tailwindcss";
 
 :root {
-  --background: #0a0b0d;
   --foreground: #ffffff;
   --card-bg: #111827;
   --border: #374151;
@@ -14,7 +13,7 @@
 }
 
 body {
-  background: var(--background);
+  background: linear-gradient(#38b000,#70e000,#9ef01a);
   color: var(--foreground);
   font-family: var(--font-inter), sans-serif;
   min-height: 100vh;

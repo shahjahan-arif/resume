@@ -15,6 +15,7 @@ import {
 } from 'lucide-react';
 // Temporarily disable recharts until we fix the SSR issue
 // import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
+import { DynamicLineChart } from './DynamicChart';
 import axios from 'axios';
 
 interface TokenBalance {
@@ -49,21 +50,21 @@ const PortfolioSection: React.FC = () => {
   const [priceData, setPriceData] = useState<PriceData | null>(null);
   const [portfolioValue, setPortfolioValue] = useState<number>(0);
   const [loading, setLoading] = useState<boolean>(false);
-  const [priceHistory, setPriceHistory] = useState<Array<{ time: string; price: number }>>([]);
-
-  // Mock price history data for demonstration
-  const mockPriceHistory = [
-    { time: '00:00', price: 23.45 },
-    { time: '04:00', price: 24.12 },
-    { time: '08:00', price: 23.89 },
-    { time: '12:00', price: 25.34 },
-    { time: '16:00', price: 24.76 },
-    { time: '20:00', price: 25.12 },
-    { time: '24:00', price: 24.89 },
-  ];
+  const [priceHistory, setPriceHistory] = useState<Array<{ name: string; price: number }>>([]);
 
   // Fetch SOL price data
   useEffect(() => {
+    // Mock price history data for demonstration
+    const mockPriceHistory = [
+      { name: '00:00', price: 23.45 },
+      { name: '04:00', price: 24.12 },
+      { name: '08:00', price: 23.89 },
+      { name: '12:00', price: 25.34 },
+      { name: '16:00', price: 24.76 },
+      { name: '20:00', price: 25.12 },
+      { name: '24:00', price: 24.89 },
+    ];
+
     const fetchSolPrice = async () => {
       try {
         const response = await axios.get(
@@ -270,13 +271,12 @@ const PortfolioSection: React.FC = () => {
         {priceHistory.length > 0 && (
           <div className="mb-6">
             <h3 className="text-lg font-semibold text-white mb-4">SOL Price (24h)</h3>
-            <div className="h-64 bg-gray-800/50 rounded-lg p-4 flex items-center justify-center">
-              <div className="text-center">
-                <Activity className="mx-auto text-purple-400 mb-2" size={48} />
-                <p className="text-gray-400">Price chart coming soon</p>
-                <p className="text-sm text-gray-500">Charts will be enabled once SSR issues are resolved</p>
-              </div>
-            </div>
+            <DynamicLineChart 
+              data={priceHistory} 
+              dataKey="price" 
+              stroke="#10b981" 
+              className="h-64"
+            />
           </div>
         )}
       </div>
