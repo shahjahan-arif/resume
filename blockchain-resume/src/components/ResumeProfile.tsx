@@ -13,8 +13,6 @@ import {
   Award,
   Briefcase,
   GraduationCap,
-  Globe,
-  Twitter,
 } from "lucide-react";
 import NFTShowcase from "./NFTShowcase";
 import SmartContractShowcase from "./SmartContractShowcase";
