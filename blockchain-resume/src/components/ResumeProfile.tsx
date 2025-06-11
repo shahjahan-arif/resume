@@ -247,7 +247,7 @@ const ResumeProfile = () => {
 
             {/* Name and Title */}
             <div className="pt-12">
-              <div className="flex justify-between items-center">
+              <div className="flex md:justify-between  md:flex-row flex-col lg:items-center">
                 <div>
                   <h1 className="text-2xl font-bold text-black mb-2 font-[family-name:var(--font-orbitron)]">
                     {personalInfo.name}
@@ -385,15 +385,15 @@ const ResumeProfile = () => {
           </div>
         </div>
 
-        <div className="grid grid-cols-8 gap-4 p-4">
-          <div className="col-span-2 space-y-4">
+        <div className="md:grid md:grid-cols-8  gap-4 p-4">
+          <div className="md:col-span-3 lg:col-span-2 w-full space-y-4">
        
             {/* About Section */}
             <div className="bg-white border border-gray-200 rounded-lg p-4">
               <h2 className="text-lg font-bold text-black mb-3 font-[family-name:var(--font-orbitron)]">
                 About
               </h2>
-              <p className="text-black leading-relaxed text-sm">{personalInfo.bio}</p>
+              <p className="text-black leading-relaxed text-sm md:text-[14px]">{personalInfo.bio}</p>
             </div>
             {/* Skills Section */}
             <div className="bg-white border border-gray-200 rounded-lg p-4">
@@ -448,7 +448,7 @@ const ResumeProfile = () => {
               </div>
             </div>
           </div>
-          <div className="col-span-6 space-y-4">
+          <div className="lg:col-span-6 md:col-span-5  space-y-4">
             {/* Experience Section */}
             <div className="bg-white border border-gray-200 rounded-lg p-4">
               <h2 className="text-lg font-bold text-black mb-4 flex items-center gap-2 font-[family-name:var(--font-orbitron)]">
@@ -488,7 +488,7 @@ const ResumeProfile = () => {
                 {achievements.map((achievement, index) => (
                   <div
                     key={index}
-                    className="flex items-center gap-3 bg-gray-50 border border-gray-200 p-4 rounded-lg"
+                    className="flex md:flex-col md:text-center items-center gap-3 bg-gray-50 border border-gray-200 p-4 rounded-lg"
                   >
                     <Award
                       className="text-black flex-shrink-0"

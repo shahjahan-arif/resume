@@ -165,7 +165,7 @@ const SmartContractShowcase: React.FC = () => {
           Smart Contracts Portfolio
         </h2>
         
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-3 mb-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mb-4">
           <div className="bg-gray-50 p-4 rounded-lg border border-gray-200">
             <div className="flex items-center gap-2 mb-1">
               <FileCode className="text-black" size={16} />
