@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from 'react';
-import { useWallet, useConnection } from '@solana/wallet-adapter-react';
+import { useWallet } from '@solana/wallet-adapter-react';
 import { 
   Code2, 
   Zap, 
@@ -14,7 +14,6 @@ import {
   FileCode,
   Database
 } from 'lucide-react';
-import { PublicKey, SystemProgram, LAMPORTS_PER_SOL } from '@solana/web3.js';
 import toast from 'react-hot-toast';
 
 interface SmartContract {
@@ -31,8 +30,8 @@ interface SmartContract {
 }
 
 const SmartContractShowcase: React.FC = () => {
-  const { publicKey, connected, sendTransaction } = useWallet();
-  const { connection } = useConnection();
+  const { publicKey, connected,  } = useWallet();
+
   const [contracts, setContracts] = useState<SmartContract[]>([]);
   const [selectedContract, setSelectedContract] = useState<SmartContract | null>(null);
   const [interactionResult, setInteractionResult] = useState<string>('');
@@ -107,10 +106,10 @@ const SmartContractShowcase: React.FC = () => {
 
   const getStatusColor = (status: string) => {
     switch (status) {
-      case 'deployed': return 'text-green-400 bg-green-400/20';
-      case 'testing': return 'text-yellow-400 bg-yellow-400/20';
-      case 'development': return 'text-blue-400 bg-blue-400/20';
-      default: return 'text-gray-400 bg-gray-400/20';
+      case 'deployed': return 'text-green-700 bg-green-100';
+      case 'testing': return 'text-yellow-700 bg-yellow-100';
+      case 'development': return 'text-blue-700 bg-blue-100';
+      default: return 'text-gray-700 bg-gray-100';
     }
   };
 
@@ -139,16 +138,8 @@ const SmartContractShowcase: React.FC = () => {
     setInteractionResult('');
 
     try {
-      // Simulate a simple contract interaction (sending a small transaction)
-      const transaction = SystemProgram.transfer({
-        fromPubkey: publicKey,
-        toPubkey: new PublicKey('11111111111111111111111111111112'), // System program
-        lamports: 1000, // Very small amount for testing
-      });
 
-      // This would normally be a contract interaction
-      // For demo purposes, we'll just show a success message
-      
+
       toast.success(`Successfully interacted with ${contract.name}`);
       setInteractionResult(`✅ Contract interaction successful!\nGas used: 5,000 units\nTransaction confirmed in 1.2s`);
       
@@ -168,83 +159,83 @@ const SmartContractShowcase: React.FC = () => {
   return (
     <div className="space-y-6">
       {/* Header Stats */}
-      <div className="bg-black backdrop-blur-sm rounded-xl p-8">
-        <h2 className="text-2xl font-bold text-white mb-6 flex items-center gap-3 font-[family-name:var(--font-orbitron)]">
-          <Code2 className="text-indigo-400" />
+      <div className="bg-white border border-gray-200 rounded-xl p-8">
+        <h2 className="text-2xl font-bold text-black mb-6 flex items-center gap-3 font-[family-name:var(--font-orbitron)]">
+          <Code2 className="text-black" />
           Smart Contracts Portfolio
         </h2>
         
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
-          <div className="bg-gradient-to-r from-indigo-600/20 to-purple-600/20 p-6 rounded-lg border border-indigo-500/30">
+          <div className="bg-gray-50 p-6 rounded-lg border border-gray-200">
             <div className="flex items-center gap-3 mb-2">
-              <FileCode className="text-indigo-400" size={20} />
-              <span className="text-gray-300">Contracts Deployed</span>
+              <FileCode className="text-black" size={20} />
+              <span className="text-gray-700">Contracts Deployed</span>
             </div>
-            <div className="text-2xl font-bold text-white">{deployedContracts.length}</div>
-            <div className="text-sm text-indigo-400">Live on mainnet</div>
+            <div className="text-2xl font-bold text-black">{deployedContracts.length}</div>
+            <div className="text-sm text-gray-600">Live on mainnet</div>
           </div>
 
-          <div className="bg-gradient-to-r from-green-600/20 to-emerald-600/20 p-6 rounded-lg border border-green-500/30">
+          <div className="bg-gray-50 p-6 rounded-lg border border-gray-200">
             <div className="flex items-center gap-3 mb-2">
-              <Database className="text-green-400" size={20} />
-              <span className="text-gray-300">Total Value Locked</span>
+              <Database className="text-black" size={20} />
+              <span className="text-gray-700">Total Value Locked</span>
             </div>
-            <div className="text-2xl font-bold text-white">{formatCurrency(totalTVL)}</div>
-            <div className="text-sm text-green-400">Across all protocols</div>
+            <div className="text-2xl font-bold text-black">{formatCurrency(totalTVL)}</div>
+            <div className="text-sm text-gray-600">Across all protocols</div>
           </div>
 
-          <div className="bg-gradient-to-r from-blue-600/20 to-cyan-600/20 p-6 rounded-lg border border-blue-500/30">
+          <div className="bg-gray-50 p-6 rounded-lg border border-gray-200">
             <div className="flex items-center gap-3 mb-2">
-              <Zap className="text-blue-400" size={20} />
-              <span className="text-gray-300">Transactions</span>
+              <Zap className="text-black" size={20} />
+              <span className="text-gray-700">Transactions</span>
             </div>
-            <div className="text-2xl font-bold text-white">{formatNumber(totalTransactions)}</div>
-            <div className="text-sm text-blue-400">Successfully processed</div>
+            <div className="text-2xl font-bold text-black">{formatNumber(totalTransactions)}</div>
+            <div className="text-sm text-gray-600">Successfully processed</div>
           </div>
 
-          <div className="bg-gradient-to-r from-orange-600/20 to-red-600/20 p-6 rounded-lg border border-orange-500/30">
+          <div className="bg-gray-50 p-6 rounded-lg border border-gray-200">
             <div className="flex items-center gap-3 mb-2">
-              <Shield className="text-orange-400" size={20} />
-              <span className="text-gray-300">Security Score</span>
+              <Shield className="text-black" size={20} />
+              <span className="text-gray-700">Security Score</span>
             </div>
-            <div className="text-2xl font-bold text-white">98.5%</div>
-            <div className="text-sm text-orange-400">Audited & verified</div>
+            <div className="text-2xl font-bold text-black">98.5%</div>
+            <div className="text-sm text-gray-600">Audited & verified</div>
           </div>
         </div>
       </div>
 
       {/* Contracts Grid */}
-      <div className="bg-black backdrop-blur-sm rounded-xl p-8">
-        <h3 className="text-xl font-bold text-white mb-6">Contract Showcase</h3>
+      <div className="bg-white border border-gray-200 rounded-xl p-8">
+        <h3 className="text-xl font-bold text-black mb-6">Contract Showcase</h3>
         
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {contracts.map((contract, index) => (
             <div 
               key={index}
-              className="enhanced-card p-6 cursor-pointer"
+              className="bg-gray-50 border border-gray-200 rounded-lg p-6 cursor-pointer hover:bg-gray-100 transition-colors"
               onClick={() => setSelectedContract(contract)}
             >
               <div className="flex items-start justify-between mb-4">
                 <div>
-                  <h4 className="text-white font-semibold text-lg mb-1">{contract.name}</h4>
-                  <p className="text-gray-400 text-sm mb-2">{contract.language}</p>
+                  <h4 className="text-black font-semibold text-lg mb-1">{contract.name}</h4>
+                  <p className="text-gray-600 text-sm mb-2">{contract.language}</p>
                 </div>
                 <span className={`px-3 py-1 rounded-full text-xs font-semibold ${getStatusColor(contract.status)}`}>
                   {contract.status}
                 </span>
               </div>
 
-              <p className="text-gray-300 text-sm mb-4 line-clamp-2">{contract.description}</p>
+              <p className="text-gray-700 text-sm mb-4 line-clamp-2">{contract.description}</p>
 
               <div className="flex items-center gap-4 mb-4">
                 {contract.gasOptimized && (
-                  <div className="flex items-center gap-1 text-green-400 text-xs">
+                  <div className="flex items-center gap-1 text-green-700 text-xs">
                     <Zap size={12} />
                     Gas Optimized
                   </div>
                 )}
                 {contract.audited && (
-                  <div className="flex items-center gap-1 text-blue-400 text-xs">
+                  <div className="flex items-center gap-1 text-blue-700 text-xs">
                     <Shield size={12} />
                     Audited
                   </div>
@@ -255,11 +246,11 @@ const SmartContractShowcase: React.FC = () => {
                 <div className="grid grid-cols-2 gap-4 mb-4">
                   <div>
                     <p className="text-gray-500 text-xs">TVL</p>
-                    <p className="text-white font-semibold">{formatCurrency(contract.tvl || 0)}</p>
+                    <p className="text-black font-semibold">{formatCurrency(contract.tvl || 0)}</p>
                   </div>
                   <div>
                     <p className="text-gray-500 text-xs">Transactions</p>
-                    <p className="text-white font-semibold">{formatNumber(contract.transactions || 0)}</p>
+                    <p className="text-black font-semibold">{formatNumber(contract.transactions || 0)}</p>
                   </div>
                 </div>
               )}
@@ -272,13 +263,13 @@ const SmartContractShowcase: React.FC = () => {
                       handleTestContract(contract);
                     }}
                     disabled={loading}
-                    className="flex-1 bg-indigo-600 hover:bg-indigo-700 disabled:bg-indigo-400 text-white py-2 px-3 rounded-lg text-sm transition-colors flex items-center justify-center gap-1"
+                    className="flex-1 bg-black hover:bg-gray-800 disabled:bg-gray-400 text-white py-2 px-3 rounded-lg text-sm transition-colors flex items-center justify-center gap-1"
                   >
                     <Play size={14} />
                     Test Contract
                   </button>
                 )}
-                <button className="bg-gray-700 hover:bg-gray-600 text-white py-2 px-3 rounded-lg text-sm transition-colors flex items-center gap-1">
+                <button className="bg-gray-200 hover:bg-gray-300 text-black py-2 px-3 rounded-lg text-sm transition-colors flex items-center gap-1">
                   <ExternalLink size={14} />
                   View
                 </button>
@@ -290,13 +281,13 @@ const SmartContractShowcase: React.FC = () => {
 
       {/* Contract Interaction Results */}
       {interactionResult && (
-        <div className="bg-black backdrop-blur-sm rounded-xl p-8">
-          <h3 className="text-xl font-bold text-white mb-4 flex items-center gap-3">
-            <CheckCircle className="text-green-400" />
+        <div className="bg-white border border-gray-200 rounded-xl p-8">
+          <h3 className="text-xl font-bold text-black mb-4 flex items-center gap-3">
+            <CheckCircle className="text-green-700" />
             Contract Interaction Result
           </h3>
-          <div className="bg-gray-800/50 p-4 rounded-lg">
-            <pre className="text-gray-300 text-sm whitespace-pre-wrap">{interactionResult}</pre>
+          <div className="bg-gray-50 border border-gray-200 p-4 rounded-lg">
+            <pre className="text-black text-sm whitespace-pre-wrap">{interactionResult}</pre>
           </div>
         </div>
       )}
@@ -304,16 +295,16 @@ const SmartContractShowcase: React.FC = () => {
       {/* Contract Detail Modal */}
       {selectedContract && (
         <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-          <div className="bg-gray-900 rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto">
+          <div className="bg-white rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto">
             <div className="p-6">
               <div className="flex justify-between items-start mb-6">
                 <div>
-                  <h3 className="text-2xl font-bold text-white mb-2">{selectedContract.name}</h3>
-                  <p className="text-gray-400">{selectedContract.language}</p>
+                  <h3 className="text-2xl font-bold text-black mb-2">{selectedContract.name}</h3>
+                  <p className="text-gray-600">{selectedContract.language}</p>
                 </div>
                 <button
                   onClick={() => setSelectedContract(null)}
-                  className="text-gray-400 hover:text-white transition-colors text-2xl"
+                  className="text-gray-600 hover:text-black transition-colors text-2xl"
                 >
                   ×
                 </button>
@@ -322,16 +313,16 @@ const SmartContractShowcase: React.FC = () => {
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                 <div className="space-y-6">
                   <div>
-                    <h4 className="text-lg font-semibold text-white mb-3">Description</h4>
-                    <p className="text-gray-300 leading-relaxed">{selectedContract.description}</p>
+                    <h4 className="text-lg font-semibold text-black mb-3">Description</h4>
+                    <p className="text-gray-700 leading-relaxed">{selectedContract.description}</p>
                   </div>
 
                   <div>
-                    <h4 className="text-lg font-semibold text-white mb-3">Features</h4>
+                    <h4 className="text-lg font-semibold text-black mb-3">Features</h4>
                     <div className="grid grid-cols-1 gap-2">
                       {selectedContract.features.map((feature, index) => (
-                        <div key={index} className="flex items-center gap-2 text-gray-300">
-                          <CheckCircle className="text-green-400" size={16} />
+                        <div key={index} className="flex items-center gap-2 text-gray-700">
+                          <CheckCircle className="text-green-700" size={16} />
                           {feature}
                         </div>
                       ))}
@@ -342,26 +333,26 @@ const SmartContractShowcase: React.FC = () => {
                 <div className="space-y-6">
                   {selectedContract.address && (
                     <div>
-                      <h4 className="text-lg font-semibold text-white mb-3">Contract Address</h4>
-                      <div className="bg-gray-800/50 p-3 rounded-lg">
-                        <code className="text-purple-400 text-sm break-all">{selectedContract.address}</code>
+                      <h4 className="text-lg font-semibold text-black mb-3">Contract Address</h4>
+                      <div className="bg-gray-50 border border-gray-200 p-3 rounded-lg">
+                        <code className="text-purple-700 text-sm break-all">{selectedContract.address}</code>
                       </div>
                     </div>
                   )}
 
                   <div>
-                    <h4 className="text-lg font-semibold text-white mb-3">Security & Performance</h4>
+                    <h4 className="text-lg font-semibold text-black mb-3">Security & Performance</h4>
                     <div className="space-y-3">
                       <div className="flex items-center justify-between">
-                        <span className="text-gray-300">Gas Optimized</span>
-                        <div className={`flex items-center gap-1 ${selectedContract.gasOptimized ? 'text-green-400' : 'text-red-400'}`}>
+                        <span className="text-gray-700">Gas Optimized</span>
+                        <div className={`flex items-center gap-1 ${selectedContract.gasOptimized ? 'text-green-700' : 'text-red-700'}`}>
                           {selectedContract.gasOptimized ? <CheckCircle size={16} /> : <AlertCircle size={16} />}
                           {selectedContract.gasOptimized ? 'Yes' : 'No'}
                         </div>
                       </div>
                       <div className="flex items-center justify-between">
-                        <span className="text-gray-300">Security Audited</span>
-                        <div className={`flex items-center gap-1 ${selectedContract.audited ? 'text-green-400' : 'text-yellow-400'}`}>
+                        <span className="text-gray-700">Security Audited</span>
+                        <div className={`flex items-center gap-1 ${selectedContract.audited ? 'text-green-700' : 'text-yellow-600'}`}>
                           {selectedContract.audited ? <CheckCircle size={16} /> : <AlertCircle size={16} />}
                           {selectedContract.audited ? 'Completed' : 'Pending'}
                         </div>
@@ -371,15 +362,15 @@ const SmartContractShowcase: React.FC = () => {
 
                   {selectedContract.status === 'deployed' && (
                     <div>
-                      <h4 className="text-lg font-semibold text-white mb-3">Live Metrics</h4>
+                      <h4 className="text-lg font-semibold text-black mb-3">Live Metrics</h4>
                       <div className="grid grid-cols-2 gap-4">
-                        <div className="bg-gray-800/50 p-3 rounded-lg">
-                          <p className="text-gray-400 text-sm">Total Value Locked</p>
-                          <p className="text-white font-bold">{formatCurrency(selectedContract.tvl || 0)}</p>
+                        <div className="bg-gray-50 border border-gray-200 p-3 rounded-lg">
+                          <p className="text-gray-600 text-sm">Total Value Locked</p>
+                          <p className="text-black font-bold">{formatCurrency(selectedContract.tvl || 0)}</p>
                         </div>
-                        <div className="bg-gray-800/50 p-3 rounded-lg">
-                          <p className="text-gray-400 text-sm">Transactions</p>
-                          <p className="text-white font-bold">{formatNumber(selectedContract.transactions || 0)}</p>
+                        <div className="bg-gray-50 border border-gray-200 p-3 rounded-lg">
+                          <p className="text-gray-600 text-sm">Transactions</p>
+                          <p className="text-black font-bold">{formatNumber(selectedContract.transactions || 0)}</p>
                         </div>
                       </div>
                     </div>
@@ -390,13 +381,13 @@ const SmartContractShowcase: React.FC = () => {
                       <button 
                         onClick={() => handleTestContract(selectedContract)}
                         disabled={loading}
-                        className="flex-1 bg-indigo-600 hover:bg-indigo-700 disabled:bg-indigo-400 text-white py-3 px-4 rounded-lg transition-colors flex items-center justify-center gap-2"
+                        className="flex-1 bg-black hover:bg-gray-800 disabled:bg-gray-400 text-white py-3 px-4 rounded-lg transition-colors flex items-center justify-center gap-2"
                       >
                         <Play size={16} />
                         {loading ? 'Testing...' : 'Test Contract'}
                       </button>
                     )}
-                    <button className="bg-gray-700 hover:bg-gray-600 text-white py-3 px-4 rounded-lg transition-colors flex items-center gap-2">
+                    <button className="bg-gray-200 hover:bg-gray-300 text-black py-3 px-4 rounded-lg transition-colors flex items-center gap-2">
                       <Download size={16} />
                       Source Code
                     </button>

@@ -123,14 +123,14 @@ const NFTShowcase: React.FC = () => {
 
   if (!connected) {
     return (
-      <div className="bg-black backdrop-blur-sm rounded-xl p-8">
-        <h2 className="text-2xl font-bold text-white mb-6 flex items-center gap-3 font-[family-name:var(--font-orbitron)]">
-          <ImageIcon className="text-pink-400" />
+      <div className="bg-white border border-gray-200 rounded-xl p-8">
+        <h2 className="text-2xl font-bold text-black mb-6 flex items-center gap-3 font-[family-name:var(--font-orbitron)]">
+          <ImageIcon className="text-black" />
           NFT Collection
         </h2>
         <div className="text-center py-8">
-          <ImageIcon className="mx-auto text-gray-400 mb-4" size={48} />
-          <p className="text-gray-300">Connect your wallet to view your NFT collection</p>
+          <ImageIcon className="mx-auto text-gray-600 mb-4" size={48} />
+          <p className="text-gray-700">Connect your wallet to view your NFT collection</p>
         </div>
       </div>
     );
@@ -139,39 +139,39 @@ const NFTShowcase: React.FC = () => {
   return (
     <div className="space-y-6">
       {/* NFT Collection Header */}
-      <div className="bg-black backdrop-blur-sm rounded-xl p-8">
+      <div className="bg-white border border-gray-200 rounded-xl p-8">
         <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-6">
-          <h2 className="text-2xl font-bold text-white mb-4 md:mb-0 flex items-center gap-3 font-[family-name:var(--font-orbitron)]">
-            <ImageIcon className="text-pink-400" />
+          <h2 className="text-2xl font-bold text-black mb-4 md:mb-0 flex items-center gap-3 font-[family-name:var(--font-orbitron)]">
+            <ImageIcon className="text-black" />
             NFT Collection
           </h2>
           <div className="flex gap-4 text-sm">
-            <div className="bg-gray-700/50 px-4 py-2 rounded-lg">
-              <span className="text-gray-300">Total NFTs: </span>
-              <span className="text-white font-semibold">{nfts.length}</span>
+            <div className="bg-gray-50 border border-gray-200 px-4 py-2 rounded-lg">
+              <span className="text-gray-700">Total NFTs: </span>
+              <span className="text-black font-semibold">{nfts.length}</span>
             </div>
-            <div className="bg-gray-700/50 px-4 py-2 rounded-lg">
-              <span className="text-gray-300">Est. Value: </span>
-              <span className="text-white font-semibold">{formatSOL(totalValue)}</span>
+            <div className="bg-gray-50 border border-gray-200 px-4 py-2 rounded-lg">
+              <span className="text-gray-700">Est. Value: </span>
+              <span className="text-black font-semibold">{formatSOL(totalValue)}</span>
             </div>
           </div>
         </div>
 
         {loading ? (
           <div className="flex justify-center py-12">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-pink-400"></div>
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-black"></div>
           </div>
         ) : nfts.length === 0 ? (
           <div className="text-center py-12">
-            <ImageIcon className="mx-auto text-gray-400 mb-4" size={48} />
-            <p className="text-gray-300">No NFTs found in this wallet</p>
+            <ImageIcon className="mx-auto text-gray-600 mb-4" size={48} />
+            <p className="text-gray-700">No NFTs found in this wallet</p>
           </div>
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
             {nfts.map((nft, index) => (
               <div
                 key={index}
-                className="bg-gray-800/50 rounded-xl overflow-hidden border border-gray-700/50 hover:border-pink-400/50 transition-all duration-300 hover:scale-105 cursor-pointer"
+                className="bg-gray-50 border border-gray-200 rounded-xl overflow-hidden hover:border-gray-400 transition-all duration-300 hover:scale-105 cursor-pointer"
                 onClick={() => setSelectedNFT(nft)}
               >
                 <div className="aspect-square relative overflow-hidden">
@@ -183,24 +183,24 @@ const NFTShowcase: React.FC = () => {
                     className="w-full h-full object-cover transition-transform duration-300 hover:scale-110"
                   />
                   <div className="absolute top-2 right-2">
-                    <div className="bg-black/50 backdrop-blur-sm rounded-full p-2">
-                      <Sparkles className="text-pink-400" size={16} />
+                    <div className="bg-white/80 backdrop-blur-sm rounded-full p-2">
+                      <Sparkles className="text-black" size={16} />
                     </div>
                   </div>
                 </div>
                 <div className="p-4">
-                  <h3 className="text-white font-semibold mb-1 truncate">{nft.name}</h3>
-                  <p className="text-gray-400 text-sm mb-3 truncate">{nft.collection}</p>
+                  <h3 className="text-black font-semibold mb-1 truncate">{nft.name}</h3>
+                  <p className="text-gray-600 text-sm mb-3 truncate">{nft.collection}</p>
                   <div className="flex justify-between items-center">
                     <div>
                       <p className="text-xs text-gray-500">Floor Price</p>
-                      <p className="text-sm text-green-400 font-semibold">
+                      <p className="text-sm text-green-700 font-semibold">
                         {nft.floorPrice ? formatSOL(nft.floorPrice) : 'N/A'}
                       </p>
                     </div>
                     <div className="text-right">
                       <p className="text-xs text-gray-500">Last Sale</p>
-                      <p className="text-sm text-blue-400 font-semibold">
+                      <p className="text-sm text-blue-700 font-semibold">
                         {nft.lastSale ? formatSOL(nft.lastSale) : 'N/A'}
                       </p>
                     </div>
@@ -215,13 +215,13 @@ const NFTShowcase: React.FC = () => {
       {/* NFT Detail Modal */}
       {selectedNFT && (
         <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-          <div className="bg-gray-900 rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto">
+          <div className="bg-white rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto">
             <div className="p-6">
               <div className="flex justify-between items-start mb-6">
-                <h3 className="text-2xl font-bold text-white">{selectedNFT.name}</h3>
+                <h3 className="text-2xl font-bold text-black">{selectedNFT.name}</h3>
                 <button
                   onClick={() => setSelectedNFT(null)}
-                  className="text-gray-400 hover:text-white transition-colors"
+                  className="text-gray-600 hover:text-black transition-colors"
                 >
                   ×
                 </button>
@@ -242,33 +242,33 @@ const NFTShowcase: React.FC = () => {
                 {/* Details */}
                 <div className="space-y-6">
                   <div>
-                    <h4 className="text-lg font-semibold text-white mb-2">Collection</h4>
-                    <p className="text-pink-400">{selectedNFT.collection}</p>
+                    <h4 className="text-lg font-semibold text-black mb-2">Collection</h4>
+                    <p className="text-gray-700">{selectedNFT.collection}</p>
                   </div>
 
                   {selectedNFT.description && (
                     <div>
-                      <h4 className="text-lg font-semibold text-white mb-2">Description</h4>
-                      <p className="text-gray-300 leading-relaxed">{selectedNFT.description}</p>
+                      <h4 className="text-lg font-semibold text-black mb-2">Description</h4>
+                      <p className="text-gray-700 leading-relaxed">{selectedNFT.description}</p>
                     </div>
                   )}
 
                   <div className="grid grid-cols-2 gap-4">
-                    <div className="bg-gray-800/50 p-4 rounded-lg">
+                    <div className="bg-gray-50 border border-gray-200 p-4 rounded-lg">
                       <div className="flex items-center gap-2 mb-2">
-                        <DollarSign className="text-green-400" size={16} />
-                        <span className="text-sm text-gray-400">Floor Price</span>
+                        <DollarSign className="text-green-700" size={16} />
+                        <span className="text-sm text-gray-600">Floor Price</span>
                       </div>
-                      <p className="text-lg font-bold text-green-400">
+                      <p className="text-lg font-bold text-green-700">
                         {selectedNFT.floorPrice ? formatSOL(selectedNFT.floorPrice) : 'N/A'}
                       </p>
                     </div>
-                    <div className="bg-gray-800/50 p-4 rounded-lg">
+                    <div className="bg-gray-50 border border-gray-200 p-4 rounded-lg">
                       <div className="flex items-center gap-2 mb-2">
-                        <Calendar className="text-blue-400" size={16} />
-                        <span className="text-sm text-gray-400">Last Sale</span>
+                        <Calendar className="text-blue-700" size={16} />
+                        <span className="text-sm text-gray-600">Last Sale</span>
                       </div>
-                      <p className="text-lg font-bold text-blue-400">
+                      <p className="text-lg font-bold text-blue-700">
                         {selectedNFT.lastSale ? formatSOL(selectedNFT.lastSale) : 'N/A'}
                       </p>
                     </div>
@@ -276,14 +276,14 @@ const NFTShowcase: React.FC = () => {
 
                   {selectedNFT.attributes && selectedNFT.attributes.length > 0 && (
                     <div>
-                      <h4 className="text-lg font-semibold text-white mb-4">Attributes</h4>
+                      <h4 className="text-lg font-semibold text-black mb-4">Attributes</h4>
                       <div className="grid grid-cols-2 gap-3">
                         {selectedNFT.attributes.map((attr, index) => (
-                          <div key={index} className="bg-gray-800/50 p-3 rounded-lg">
+                          <div key={index} className="bg-gray-50 border border-gray-200 p-3 rounded-lg">
                             <p className="text-xs text-gray-500 uppercase tracking-wide mb-1">
                               {attr.trait_type}
                             </p>
-                            <p className="text-white font-medium">{attr.value}</p>
+                            <p className="text-black font-medium">{attr.value}</p>
                           </div>
                         ))}
                       </div>
@@ -291,11 +291,11 @@ const NFTShowcase: React.FC = () => {
                   )}
 
                   <div className="flex gap-3">
-                    <button className="flex-1 bg-pink-600 hover:bg-pink-700 text-white py-3 px-4 rounded-lg transition-colors flex items-center justify-center gap-2">
+                    <button className="flex-1 bg-black hover:bg-gray-800 text-white py-3 px-4 rounded-lg transition-colors flex items-center justify-center gap-2">
                       <Eye size={16} />
                       View on Explorer
                     </button>
-                    <button className="flex-1 bg-gray-700 hover:bg-gray-600 text-white py-3 px-4 rounded-lg transition-colors flex items-center justify-center gap-2">
+                    <button className="flex-1 bg-gray-200 hover:bg-gray-300 text-black py-3 px-4 rounded-lg transition-colors flex items-center justify-center gap-2">
                       <ExternalLink size={16} />
                       View on Marketplace
                     </button>
