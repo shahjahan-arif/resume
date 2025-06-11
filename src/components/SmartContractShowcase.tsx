@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { useWallet } from '@solana/wallet-adapter-react';
 import { 
   Code2, 
@@ -38,7 +38,7 @@ const SmartContractShowcase: React.FC = () => {
   const [loading, setLoading] = useState<boolean>(false);
 
   // Mock smart contracts portfolio
-  const mockContracts: SmartContract[] = [
+  const mockContracts: SmartContract[] = useMemo(() => [
     {
       name: 'DeFi Yield Aggregator',
       description: 'An automated yield farming protocol that optimizes returns across multiple DeFi platforms on Solana',
@@ -98,11 +98,11 @@ const SmartContractShowcase: React.FC = () => {
       audited: false,
       features: ['Multi-chain support', 'Merkle proofs', 'Fraud detection', 'Batch processing']
     }
-  ];
+  ], []);
 
   useEffect(() => {
     setContracts(mockContracts);
-  }, []);
+  }, [mockContracts]);
 
   const getStatusColor = (status: string) => {
     switch (status) {
