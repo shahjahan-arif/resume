@@ -157,100 +157,100 @@ const SmartContractShowcase: React.FC = () => {
   const totalTransactions = deployedContracts.reduce((sum, contract) => sum + (contract.transactions || 0), 0);
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Header Stats */}
-      <div className="bg-white border border-gray-200 rounded-xl p-8">
-        <h2 className="text-2xl font-bold text-black mb-6 flex items-center gap-3 font-[family-name:var(--font-orbitron)]">
-          <Code2 className="text-black" />
+      <div className="bg-white border border-gray-200 rounded-lg p-4">
+        <h2 className="text-lg font-bold text-black mb-4 flex items-center gap-2 font-[family-name:var(--font-orbitron)]">
+          <Code2 className="text-black" size={18} />
           Smart Contracts Portfolio
         </h2>
         
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
-          <div className="bg-gray-50 p-6 rounded-lg border border-gray-200">
-            <div className="flex items-center gap-3 mb-2">
-              <FileCode className="text-black" size={20} />
-              <span className="text-gray-700">Contracts Deployed</span>
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-3 mb-4">
+          <div className="bg-gray-50 p-4 rounded-lg border border-gray-200">
+            <div className="flex items-center gap-2 mb-1">
+              <FileCode className="text-black" size={16} />
+              <span className="text-gray-700 text-sm">Contracts Deployed</span>
             </div>
-            <div className="text-2xl font-bold text-black">{deployedContracts.length}</div>
-            <div className="text-sm text-gray-600">Live on mainnet</div>
+            <div className="text-xl font-bold text-black">{deployedContracts.length}</div>
+            <div className="text-xs text-gray-600">Live on mainnet</div>
           </div>
 
-          <div className="bg-gray-50 p-6 rounded-lg border border-gray-200">
-            <div className="flex items-center gap-3 mb-2">
-              <Database className="text-black" size={20} />
-              <span className="text-gray-700">Total Value Locked</span>
+          <div className="bg-gray-50 p-4 rounded-lg border border-gray-200">
+            <div className="flex items-center gap-2 mb-1">
+              <Database className="text-black" size={16} />
+              <span className="text-gray-700 text-sm">Total Value Locked</span>
             </div>
-            <div className="text-2xl font-bold text-black">{formatCurrency(totalTVL)}</div>
-            <div className="text-sm text-gray-600">Across all protocols</div>
+            <div className="text-xl font-bold text-black">{formatCurrency(totalTVL)}</div>
+            <div className="text-xs text-gray-600">Across all protocols</div>
           </div>
 
-          <div className="bg-gray-50 p-6 rounded-lg border border-gray-200">
-            <div className="flex items-center gap-3 mb-2">
-              <Zap className="text-black" size={20} />
-              <span className="text-gray-700">Transactions</span>
+          <div className="bg-gray-50 p-4 rounded-lg border border-gray-200">
+            <div className="flex items-center gap-2 mb-1">
+              <Zap className="text-black" size={16} />
+              <span className="text-gray-700 text-sm">Transactions</span>
             </div>
-            <div className="text-2xl font-bold text-black">{formatNumber(totalTransactions)}</div>
-            <div className="text-sm text-gray-600">Successfully processed</div>
+            <div className="text-xl font-bold text-black">{formatNumber(totalTransactions)}</div>
+            <div className="text-xs text-gray-600">Successfully processed</div>
           </div>
 
-          <div className="bg-gray-50 p-6 rounded-lg border border-gray-200">
-            <div className="flex items-center gap-3 mb-2">
-              <Shield className="text-black" size={20} />
-              <span className="text-gray-700">Security Score</span>
+          <div className="bg-gray-50 p-4 rounded-lg border border-gray-200">
+            <div className="flex items-center gap-2 mb-1">
+              <Shield className="text-black" size={16} />
+              <span className="text-gray-700 text-sm">Security Score</span>
             </div>
-            <div className="text-2xl font-bold text-black">98.5%</div>
-            <div className="text-sm text-gray-600">Audited & verified</div>
+            <div className="text-xl font-bold text-black">98.5%</div>
+            <div className="text-xs text-gray-600">Audited & verified</div>
           </div>
         </div>
       </div>
 
       {/* Contracts Grid */}
-      <div className="bg-white border border-gray-200 rounded-xl p-8">
-        <h3 className="text-xl font-bold text-black mb-6">Contract Showcase</h3>
+      <div className="bg-white border border-gray-200 rounded-lg p-4">
+        <h3 className="text-lg font-bold text-black mb-4">Contract Showcase</h3>
         
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
           {contracts.map((contract, index) => (
             <div 
               key={index}
-              className="bg-gray-50 border border-gray-200 rounded-lg p-6 cursor-pointer hover:bg-gray-100 transition-colors"
+              className="bg-gray-50 border border-gray-200 rounded-lg p-4 cursor-pointer hover:bg-gray-100 transition-colors"
               onClick={() => setSelectedContract(contract)}
             >
-              <div className="flex items-start justify-between mb-4">
+              <div className="flex items-start justify-between mb-3">
                 <div>
-                  <h4 className="text-black font-semibold text-lg mb-1">{contract.name}</h4>
-                  <p className="text-gray-600 text-sm mb-2">{contract.language}</p>
+                  <h4 className="text-black font-semibold text-base mb-1">{contract.name}</h4>
+                  <p className="text-gray-600 text-xs mb-2">{contract.language}</p>
                 </div>
-                <span className={`px-3 py-1 rounded-full text-xs font-semibold ${getStatusColor(contract.status)}`}>
+                <span className={`px-2 py-1 rounded-full text-xs font-semibold ${getStatusColor(contract.status)}`}>
                   {contract.status}
                 </span>
               </div>
 
-              <p className="text-gray-700 text-sm mb-4 line-clamp-2">{contract.description}</p>
+              <p className="text-gray-700 text-xs mb-3 line-clamp-2">{contract.description}</p>
 
-              <div className="flex items-center gap-4 mb-4">
+              <div className="flex items-center gap-3 mb-3">
                 {contract.gasOptimized && (
                   <div className="flex items-center gap-1 text-green-700 text-xs">
-                    <Zap size={12} />
+                    <Zap size={10} />
                     Gas Optimized
                   </div>
                 )}
                 {contract.audited && (
                   <div className="flex items-center gap-1 text-blue-700 text-xs">
-                    <Shield size={12} />
+                    <Shield size={10} />
                     Audited
                   </div>
                 )}
               </div>
 
               {contract.status === 'deployed' && (
-                <div className="grid grid-cols-2 gap-4 mb-4">
+                <div className="grid grid-cols-2 gap-3 mb-3">
                   <div>
                     <p className="text-gray-500 text-xs">TVL</p>
-                    <p className="text-black font-semibold">{formatCurrency(contract.tvl || 0)}</p>
+                    <p className="text-black font-semibold text-sm">{formatCurrency(contract.tvl || 0)}</p>
                   </div>
                   <div>
                     <p className="text-gray-500 text-xs">Transactions</p>
-                    <p className="text-black font-semibold">{formatNumber(contract.transactions || 0)}</p>
+                    <p className="text-black font-semibold text-sm">{formatNumber(contract.transactions || 0)}</p>
                   </div>
                 </div>
               )}
@@ -263,14 +263,14 @@ const SmartContractShowcase: React.FC = () => {
                       handleTestContract(contract);
                     }}
                     disabled={loading}
-                    className="flex-1 bg-black hover:bg-gray-800 disabled:bg-gray-400 text-white py-2 px-3 rounded-lg text-sm transition-colors flex items-center justify-center gap-1"
+                    className="flex-1 bg-black hover:bg-gray-800 disabled:bg-gray-400 text-white py-1.5 px-2 rounded-lg text-xs transition-colors flex items-center justify-center gap-1"
                   >
-                    <Play size={14} />
+                    <Play size={12} />
                     Test Contract
                   </button>
                 )}
-                <button className="bg-gray-200 hover:bg-gray-300 text-black py-2 px-3 rounded-lg text-sm transition-colors flex items-center gap-1">
-                  <ExternalLink size={14} />
+                <button className="bg-gray-200 hover:bg-gray-300 text-black py-1.5 px-2 rounded-lg text-xs transition-colors flex items-center gap-1">
+                  <ExternalLink size={12} />
                   View
                 </button>
               </div>
@@ -281,13 +281,13 @@ const SmartContractShowcase: React.FC = () => {
 
       {/* Contract Interaction Results */}
       {interactionResult && (
-        <div className="bg-white border border-gray-200 rounded-xl p-8">
-          <h3 className="text-xl font-bold text-black mb-4 flex items-center gap-3">
-            <CheckCircle className="text-green-700" />
+        <div className="bg-white border border-gray-200 rounded-lg p-4">
+          <h3 className="text-lg font-bold text-black mb-3 flex items-center gap-2">
+            <CheckCircle className="text-green-700" size={18} />
             Contract Interaction Result
           </h3>
-          <div className="bg-gray-50 border border-gray-200 p-4 rounded-lg">
-            <pre className="text-black text-sm whitespace-pre-wrap">{interactionResult}</pre>
+          <div className="bg-gray-50 border border-gray-200 p-3 rounded-lg">
+            <pre className="text-black text-xs whitespace-pre-wrap">{interactionResult}</pre>
           </div>
         </div>
       )}
@@ -295,34 +295,34 @@ const SmartContractShowcase: React.FC = () => {
       {/* Contract Detail Modal */}
       {selectedContract && (
         <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-          <div className="bg-white rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto">
-            <div className="p-6">
-              <div className="flex justify-between items-start mb-6">
+          <div className="bg-white rounded-xl max-w-3xl w-full max-h-[90vh] overflow-y-auto">
+            <div className="p-5">
+              <div className="flex justify-between items-start mb-5">
                 <div>
-                  <h3 className="text-2xl font-bold text-black mb-2">{selectedContract.name}</h3>
-                  <p className="text-gray-600">{selectedContract.language}</p>
+                  <h3 className="text-xl font-bold text-black mb-2">{selectedContract.name}</h3>
+                  <p className="text-gray-600 text-sm">{selectedContract.language}</p>
                 </div>
                 <button
                   onClick={() => setSelectedContract(null)}
-                  className="text-gray-600 hover:text-black transition-colors text-2xl"
+                  className="text-gray-600 hover:text-black transition-colors text-xl"
                 >
                   ×
                 </button>
               </div>
 
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                <div className="space-y-6">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <div className="space-y-5">
                   <div>
-                    <h4 className="text-lg font-semibold text-black mb-3">Description</h4>
-                    <p className="text-gray-700 leading-relaxed">{selectedContract.description}</p>
+                    <h4 className="text-base font-semibold text-black mb-2">Description</h4>
+                    <p className="text-gray-700 text-sm leading-relaxed">{selectedContract.description}</p>
                   </div>
 
                   <div>
-                    <h4 className="text-lg font-semibold text-black mb-3">Features</h4>
-                    <div className="grid grid-cols-1 gap-2">
+                    <h4 className="text-base font-semibold text-black mb-2">Features</h4>
+                    <div className="grid grid-cols-1 gap-1">
                       {selectedContract.features.map((feature, index) => (
-                        <div key={index} className="flex items-center gap-2 text-gray-700">
-                          <CheckCircle className="text-green-700" size={16} />
+                        <div key={index} className="flex items-center gap-2 text-gray-700 text-sm">
+                          <CheckCircle className="text-green-700" size={14} />
                           {feature}
                         </div>
                       ))}
@@ -330,30 +330,30 @@ const SmartContractShowcase: React.FC = () => {
                   </div>
                 </div>
 
-                <div className="space-y-6">
+                <div className="space-y-5">
                   {selectedContract.address && (
                     <div>
-                      <h4 className="text-lg font-semibold text-black mb-3">Contract Address</h4>
+                      <h4 className="text-base font-semibold text-black mb-2">Contract Address</h4>
                       <div className="bg-gray-50 border border-gray-200 p-3 rounded-lg">
-                        <code className="text-purple-700 text-sm break-all">{selectedContract.address}</code>
+                        <code className="text-purple-700 text-xs break-all">{selectedContract.address}</code>
                       </div>
                     </div>
                   )}
 
                   <div>
-                    <h4 className="text-lg font-semibold text-black mb-3">Security & Performance</h4>
-                    <div className="space-y-3">
+                    <h4 className="text-base font-semibold text-black mb-2">Security & Performance</h4>
+                    <div className="space-y-2">
                       <div className="flex items-center justify-between">
-                        <span className="text-gray-700">Gas Optimized</span>
-                        <div className={`flex items-center gap-1 ${selectedContract.gasOptimized ? 'text-green-700' : 'text-red-700'}`}>
-                          {selectedContract.gasOptimized ? <CheckCircle size={16} /> : <AlertCircle size={16} />}
+                        <span className="text-gray-700 text-sm">Gas Optimized</span>
+                        <div className={`flex items-center gap-1 text-sm ${selectedContract.gasOptimized ? 'text-green-700' : 'text-red-700'}`}>
+                          {selectedContract.gasOptimized ? <CheckCircle size={14} /> : <AlertCircle size={14} />}
                           {selectedContract.gasOptimized ? 'Yes' : 'No'}
                         </div>
                       </div>
                       <div className="flex items-center justify-between">
-                        <span className="text-gray-700">Security Audited</span>
-                        <div className={`flex items-center gap-1 ${selectedContract.audited ? 'text-green-700' : 'text-yellow-600'}`}>
-                          {selectedContract.audited ? <CheckCircle size={16} /> : <AlertCircle size={16} />}
+                        <span className="text-gray-700 text-sm">Security Audited</span>
+                        <div className={`flex items-center gap-1 text-sm ${selectedContract.audited ? 'text-green-700' : 'text-yellow-600'}`}>
+                          {selectedContract.audited ? <CheckCircle size={14} /> : <AlertCircle size={14} />}
                           {selectedContract.audited ? 'Completed' : 'Pending'}
                         </div>
                       </div>
@@ -362,33 +362,33 @@ const SmartContractShowcase: React.FC = () => {
 
                   {selectedContract.status === 'deployed' && (
                     <div>
-                      <h4 className="text-lg font-semibold text-black mb-3">Live Metrics</h4>
-                      <div className="grid grid-cols-2 gap-4">
+                      <h4 className="text-base font-semibold text-black mb-2">Live Metrics</h4>
+                      <div className="grid grid-cols-2 gap-3">
                         <div className="bg-gray-50 border border-gray-200 p-3 rounded-lg">
-                          <p className="text-gray-600 text-sm">Total Value Locked</p>
-                          <p className="text-black font-bold">{formatCurrency(selectedContract.tvl || 0)}</p>
+                          <p className="text-gray-600 text-xs">Total Value Locked</p>
+                          <p className="text-black font-bold text-sm">{formatCurrency(selectedContract.tvl || 0)}</p>
                         </div>
                         <div className="bg-gray-50 border border-gray-200 p-3 rounded-lg">
-                          <p className="text-gray-600 text-sm">Transactions</p>
-                          <p className="text-black font-bold">{formatNumber(selectedContract.transactions || 0)}</p>
+                          <p className="text-gray-600 text-xs">Transactions</p>
+                          <p className="text-black font-bold text-sm">{formatNumber(selectedContract.transactions || 0)}</p>
                         </div>
                       </div>
                     </div>
                   )}
 
-                  <div className="flex gap-3">
+                  <div className="flex gap-2">
                     {selectedContract.status === 'deployed' && (
                       <button 
                         onClick={() => handleTestContract(selectedContract)}
                         disabled={loading}
-                        className="flex-1 bg-black hover:bg-gray-800 disabled:bg-gray-400 text-white py-3 px-4 rounded-lg transition-colors flex items-center justify-center gap-2"
+                        className="flex-1 bg-black hover:bg-gray-800 disabled:bg-gray-400 text-white py-2 px-3 rounded-lg text-sm transition-colors flex items-center justify-center gap-1"
                       >
-                        <Play size={16} />
+                        <Play size={14} />
                         {loading ? 'Testing...' : 'Test Contract'}
                       </button>
                     )}
-                    <button className="bg-gray-200 hover:bg-gray-300 text-black py-3 px-4 rounded-lg transition-colors flex items-center gap-2">
-                      <Download size={16} />
+                    <button className="bg-gray-200 hover:bg-gray-300 text-black py-2 px-3 rounded-lg text-sm transition-colors flex items-center gap-1">
+                      <Download size={14} />
                       Source Code
                     </button>
                   </div>

@@ -182,86 +182,86 @@ const PortfolioSection: React.FC = () => {
 
   if (!connected) {
     return (
-      <div className="bg-white border border-gray-200 rounded-xl p-8">
-        <h2 className="text-2xl font-bold text-black mb-6 flex items-center gap-3 font-[family-name:var(--font-orbitron)]">
-          <Wallet className="text-black" />
+      <div className="bg-white border border-gray-200 rounded-lg p-4">
+        <h2 className="text-lg font-bold text-black mb-4 flex items-center gap-2 font-[family-name:var(--font-orbitron)]">
+          <Wallet className="text-black" size={18} />
           Solana Portfolio
         </h2>
-        <div className="text-center py-8">
-          <Wallet className="mx-auto text-gray-600 mb-4" size={48} />
-          <p className="text-black mb-6">Connect your Solana wallet to view your portfolio</p>
-          <WalletMultiButton className="!bg-black hover:!bg-gray-800" />
+        <div className="text-center py-6">
+          <Wallet className="mx-auto text-gray-600 mb-3" size={40} />
+          <p className="text-black mb-4 text-sm">Connect your Solana wallet to view your portfolio</p>
+          <WalletMultiButton className="!bg-black hover:!bg-gray-800 !text-sm !py-2 !px-3" />
         </div>
       </div>
     );
   }
 
   return (
-    <div className="space-y-6 text-black">
+    <div className="space-y-4 text-black">
       {/* Wallet Connection & Overview */}
-      <div className="bg-white border border-gray-200 rounded-xl p-8">
-        <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-6">
-          <h2 className="text-2xl font-bold text-black mb-4 md:mb-0 flex items-center gap-3 font-[family-name:var(--font-orbitron)]">
-            <Wallet className="text-black" />
+      <div className="bg-white border border-gray-200 rounded-lg p-4">
+        <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
+          <h2 className="text-lg font-bold text-black mb-3 md:mb-0 flex items-center gap-2 font-[family-name:var(--font-orbitron)]">
+            <Wallet className="text-black" size={18} />
             Solana Portfolio
           </h2>
-          <div className="flex flex-col sm:flex-row gap-3">
-            <WalletMultiButton className="!bg-black hover:!bg-gray-800" />
+          <div className="flex flex-col sm:flex-row gap-2">
+            <WalletMultiButton className="!bg-black hover:!bg-gray-800 !text-sm !py-2 !px-3" />
             {publicKey && (
-              <div className="flex items-center gap-2 bg-gray-100 border border-gray-200 px-4 py-2 rounded-lg">
-                <span className="text-gray-700 text-sm">
+              <div className="flex items-center gap-1 bg-gray-100 border border-gray-200 px-3 py-1.5 rounded-lg">
+                <span className="text-gray-700 text-xs">
                   {truncateAddress(publicKey.toString())}
                 </span>
-                <ExternalLink size={14} className="text-gray-600" />
+                <ExternalLink size={12} className="text-gray-600" />
               </div>
             )}
           </div>
         </div>
 
         {/* Portfolio Stats */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
-          <div className="bg-gray-50 p-6 rounded-lg border border-gray-200">
-            <div className="flex items-center justify-between mb-2">
-              <span className="text-gray-700">Total Value</span>
-              <DollarSign className="text-black" size={20} />
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+          <div className="bg-gray-50 p-4 rounded-lg border border-gray-200">
+            <div className="flex items-center justify-between mb-1">
+              <span className="text-gray-700 text-sm">Total Value</span>
+              <DollarSign className="text-black" size={16} />
             </div>
-            <div className="text-2xl font-bold text-black">
+            <div className="text-xl font-bold text-black">
               {loading ? '...' : formatCurrency(portfolioValue)}
             </div>
-            <div className="text-sm text-gray-600">
+            <div className="text-xs text-gray-600">
               {balance > 0 && `${formatNumber(balance)} SOL`}
             </div>
           </div>
 
-          <div className="bg-gray-50 p-6 rounded-lg border border-gray-200">
-            <div className="flex items-center justify-between mb-2">
-              <span className="text-gray-700">SOL Price</span>
-              <TrendingUp className="text-black" size={20} />
+          <div className="bg-gray-50 p-4 rounded-lg border border-gray-200">
+            <div className="flex items-center justify-between mb-1">
+              <span className="text-gray-700 text-sm">SOL Price</span>
+              <TrendingUp className="text-black" size={16} />
             </div>
-            <div className="text-2xl font-bold text-black">
+            <div className="text-xl font-bold text-black">
               {priceData ? formatCurrency(priceData.price) : '...'}
             </div>
-            <div className={`text-sm flex items-center gap-1 ${
+            <div className={`text-xs flex items-center gap-1 ${
               priceData && priceData.change24h > 0 ? 'text-green-700' : 'text-red-700'
             }`}>
               {priceData && priceData.change24h > 0 ? (
-                <TrendingUp size={14} />
+                <TrendingUp size={12} />
               ) : (
-                <TrendingDown size={14} />
+                <TrendingDown size={12} />
               )}
               {priceData ? `${priceData.change24h.toFixed(2)}%` : '...'}
             </div>
           </div>
 
-          <div className="bg-gray-50 p-6 rounded-lg border border-gray-200">
-            <div className="flex items-center justify-between mb-2">
-              <span className="text-gray-700">Tokens</span>
-              <Coins className="text-black" size={20} />
+          <div className="bg-gray-50 p-4 rounded-lg border border-gray-200">
+            <div className="flex items-center justify-between mb-1">
+              <span className="text-gray-700 text-sm">Tokens</span>
+              <Coins className="text-black" size={16} />
             </div>
-            <div className="text-2xl font-bold text-black">
+            <div className="text-xl font-bold text-black">
               {tokenBalances.length + 1}
             </div>
-            <div className="text-sm text-gray-600">
+            <div className="text-xs text-gray-600">
               Including SOL
             </div>
           </div>
@@ -269,39 +269,39 @@ const PortfolioSection: React.FC = () => {
 
         {/* Price Chart - Temporarily disabled due to SSR issues */}
         {priceHistory.length > 0 && (
-          <div className="mb-6">
-            <h3 className="text-lg font-semibold text-black mb-4">SOL Price (24h)</h3>
+          <div className="mb-4">
+            <h3 className="text-base font-semibold text-black mb-3">SOL Price (24h)</h3>
             <DynamicLineChart 
               data={priceHistory} 
               dataKey="price" 
               stroke="#10b981" 
-              className="h-64"
+              className="h-48"
             />
           </div>
         )}
       </div>
 
       {/* Token Holdings */}
-      <div className="bg-white border border-gray-200 rounded-xl p-8">
-        <h3 className="text-xl font-bold text-black mb-6 flex items-center gap-3">
-          <Coins className="text-black" />
+      <div className="bg-white border border-gray-200 rounded-lg p-4">
+        <h3 className="text-lg font-bold text-black mb-4 flex items-center gap-2">
+          <Coins className="text-black" size={18} />
           Token Holdings
         </h3>
-        <div className="space-y-4">
+        <div className="space-y-3">
           {/* SOL Balance */}
-          <div className="flex items-center justify-between p-4 bg-gray-50 border border-gray-200 rounded-lg">
-            <div className="flex items-center gap-4">
-              <div className="w-10 h-10 bg-gradient-to-r from-purple-500 to-blue-500 rounded-full flex items-center justify-center">
-                <span className="text-white font-bold text-sm">SOL</span>
+          <div className="flex items-center justify-between p-3 bg-gray-50 border border-gray-200 rounded-lg">
+            <div className="flex items-center gap-3">
+              <div className="w-8 h-8 bg-gradient-to-r from-purple-500 to-blue-500 rounded-full flex items-center justify-center">
+                <span className="text-white font-bold text-xs">SOL</span>
               </div>
               <div>
-                <h4 className="text-black font-semibold">Solana</h4>
-                <p className="text-gray-600 text-sm">SOL</p>
+                <h4 className="text-black font-semibold text-sm">Solana</h4>
+                <p className="text-gray-600 text-xs">SOL</p>
               </div>
             </div>
             <div className="text-right">
-              <p className="text-black font-semibold">{formatNumber(balance)}</p>
-              <p className="text-gray-600 text-sm">
+              <p className="text-black font-semibold text-sm">{formatNumber(balance)}</p>
+              <p className="text-gray-600 text-xs">
                 {priceData ? formatCurrency(balance * priceData.price) : '...'}
               </p>
             </div>
@@ -309,19 +309,19 @@ const PortfolioSection: React.FC = () => {
 
           {/* Other Tokens */}
           {tokenBalances.map((token, index) => (
-            <div key={index} className="flex items-center justify-between p-4 bg-gray-50 border border-gray-200 rounded-lg">
-              <div className="flex items-center gap-4">
-                <div className="w-10 h-10 bg-gray-400 rounded-full flex items-center justify-center">
+            <div key={index} className="flex items-center justify-between p-3 bg-gray-50 border border-gray-200 rounded-lg">
+              <div className="flex items-center gap-3">
+                <div className="w-8 h-8 bg-gray-400 rounded-full flex items-center justify-center">
                   <span className="text-white font-bold text-xs">{token.symbol}</span>
                 </div>
                 <div>
-                  <h4 className="text-black font-semibold">{token.name}</h4>
-                  <p className="text-gray-600 text-sm">{token.symbol}</p>
+                  <h4 className="text-black font-semibold text-sm">{token.name}</h4>
+                  <p className="text-gray-600 text-xs">{token.symbol}</p>
                 </div>
               </div>
               <div className="text-right">
-                <p className="text-black font-semibold">{formatNumber(token.amount)}</p>
-                <p className="text-gray-600 text-sm">
+                <p className="text-black font-semibold text-sm">{formatNumber(token.amount)}</p>
+                <p className="text-gray-600 text-xs">
                   {token.symbol === 'USDC' || token.symbol === 'USDT' 
                     ? formatCurrency(token.amount) 
                     : 'Value N/A'
@@ -334,37 +334,37 @@ const PortfolioSection: React.FC = () => {
       </div>
 
       {/* Recent Transactions */}
-      <div className="bg-white border border-gray-200 rounded-xl p-8">
-        <h3 className="text-xl font-bold text-black mb-6 flex items-center gap-3">
-          <Activity className="text-black" />
+      <div className="bg-white border border-gray-200 rounded-lg p-4">
+        <h3 className="text-lg font-bold text-black mb-4 flex items-center gap-2">
+          <Activity className="text-black" size={18} />
           Recent Transactions
         </h3>
-        <div className="space-y-3">
+        <div className="space-y-2">
           {transactions.length === 0 ? (
-            <p className="text-gray-600 text-center py-4">No recent transactions</p>
+            <p className="text-gray-600 text-center py-3 text-sm">No recent transactions</p>
           ) : (
             transactions.map((tx, index) => (
-              <div key={index} className="flex items-center justify-between p-4 bg-gray-50 border border-gray-200 rounded-lg">
-                <div className="flex items-center gap-4">
-                  <div className={`w-8 h-8 rounded-full flex items-center justify-center ${
+              <div key={index} className="flex items-center justify-between p-3 bg-gray-50 border border-gray-200 rounded-lg">
+                <div className="flex items-center gap-3">
+                  <div className={`w-6 h-6 rounded-full flex items-center justify-center text-xs ${
                     tx.type === 'received' ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'
                   }`}>
                     {tx.type === 'received' ? '↓' : '↑'}
                   </div>
                   <div>
-                    <p className="text-black font-medium capitalize">{tx.type}</p>
-                    <p className="text-gray-600 text-sm">
+                    <p className="text-black font-medium capitalize text-sm">{tx.type}</p>
+                    <p className="text-gray-600 text-xs">
                       {new Date(tx.blockTime * 1000).toLocaleString()}
                     </p>
                   </div>
                 </div>
                 <div className="text-right">
-                  <p className={`font-semibold ${
+                  <p className={`font-semibold text-sm ${
                     tx.type === 'received' ? 'text-green-700' : 'text-red-700'
                   }`}>
                     {tx.type === 'received' ? '+' : '-'}{formatNumber(tx.amount)} SOL
                   </p>
-                  <p className="text-gray-600 text-sm">
+                  <p className="text-gray-600 text-xs">
                     {truncateAddress(tx.signature)}
                   </p>
                 </div>

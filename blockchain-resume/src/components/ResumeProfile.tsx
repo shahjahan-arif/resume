@@ -202,45 +202,45 @@ const ResumeProfile = () => {
 
       {/* Header with download button */}
       <div className="sticky top-0 z-50 bg-white border-b border-gray-300">
-        <div className="w-[90%] mx-auto px-6 py-4 flex justify-between items-center">
-          <h1 className="text-xl font-bold text-black font-[family-name:var(--font-orbitron)]">
+        <div className="w-[90%] mx-auto px-4 py-3 flex justify-between items-center">
+          <h1 className="text-lg font-bold text-black font-[family-name:var(--font-orbitron)]">
             Blockchain Dev
           </h1>
         </div>
       </div>
 
 
-      <div id="resume-content" className="mx-auto space-y-6 relative z-10">
+      <div id="resume-content" className="mx-auto space-y-4 relative z-10">
         {/* Profile Header - Facebook-like */}
         <div className="bg-white border border-gray-200 overflow-hidden">
           {/* Cover Photo */}
-          <div className="h-32 bg-[#20a21c] relative">
+          <div className="h-36 bg-[#20a21c] relative">
             <div className="absolute inset-0 opacity-30"></div>
           </div>
 
           {/* Profile Info */}
-          <div className="relative px-6 pb-6">
+          <div className="relative px-4 pb-4">
             {/* Profile Picture */}
-            <div className="absolute -top-12 left-6">
-              <div className="w-24 h-24 rounded-full bg-white border-4 border-gray-300 flex items-center justify-center">
+            <div className="absolute -top-16 left-4">
+              <div className="w-28 h-28 rounded-full bg-white border-4 flex items-center justify-center">
                 {/* <span className="text-4xl font-bold text-black font-[family-name:var(--font-orbitron)]">
                   {personalInfo.name.split(' ').map(n => n[0]).join('')}
                 </span> */}
                 <Image
                   src="/images.jpeg"
                   alt="Profile"
-                  width={96}
-                  height={96}
+                  width={300}
+                  height={300}
                   className="rounded-full w-full h-full object-cover"
                 />
               </div>
             </div>
 
             {/* Name and Title */}
-            <div className="pt-16">
+            <div className="pt-12">
               <div className="flex justify-between items-center">
                 <div>
-                  <h1 className="text-3xl font-bold text-black mb-2 font-[family-name:var(--font-orbitron)]">
+                  <h1 className="text-2xl font-bold text-black mb-2 font-[family-name:var(--font-orbitron)]">
                     {personalInfo.name}
                   </h1>
 
@@ -249,32 +249,32 @@ const ResumeProfile = () => {
                     {personalInfo.status?.type === "OPEN_TO_WORK" ? (
                       // Show university when open to work
                       <>
-                        <div className="w-8 h-8 rounded-md bg-white p-1 flex items-center justify-center">
+                        <div className="w-6 h-6 rounded-md bg-white p-1 flex items-center justify-center">
                           <Image
                             src={personalInfo.universityLogo}
                             alt={`${personalInfo.university} logo`}
-                            width={24}
-                            height={24}
+                            width={16}
+                            height={16}
                             className="object-contain"
                           />
                         </div>
-                        <p className="text-base text-black font-medium">
+                        <p className="text-sm text-black font-medium">
                           {personalInfo.university}
                         </p>
                       </>
                     ) : (
                       // Show company for other statuses
                       <>
-                        <div className="w-8 h-8 rounded-md bg-white p-1 flex items-center justify-center">
+                        <div className="w-6 h-6 rounded-md bg-white p-1 flex items-center justify-center">
                           <Image
                             src={personalInfo.companyLogo}
                             alt={`${personalInfo.company} logo`}
-                            width={24}
-                            height={24}
+                            width={16}
+                            height={16}
                             className="object-contain"
                           />
                         </div>
-                        <p className="text-base text-black font-medium">
+                        <p className="text-sm text-black font-medium">
                           {personalInfo.company}
                         </p>
                       </>
@@ -284,9 +284,9 @@ const ResumeProfile = () => {
 
                 {/* Status Badge - LinkedIn style */}
                 {personalInfo.status && (
-                  <div className="mb-3">
+                  <div className="mb-2">
                     <div
-                      className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-lg ${
+                      className={`inline-flex items-center gap-2 px-2 py-1 rounded-lg ${
                         getStatusStyling(personalInfo.status.type).bgColor
                       } ${
                         getStatusStyling(personalInfo.status.type).borderColor
@@ -294,11 +294,11 @@ const ResumeProfile = () => {
                         getStatusStyling(personalInfo.status.type).textColor
                       }`}
                     >
-                      <span className="text-sm">
+                      <span className="text-xs">
                         {getStatusStyling(personalInfo.status.type).icon}
                       </span>
                       <div className="flex flex-col">
-                        <span className="font-semibold text-sm">
+                        <span className="font-semibold text-xs">
                           {personalInfo.status.text}
                         </span>
                         {personalInfo.status.subtitle && (
@@ -312,87 +312,87 @@ const ResumeProfile = () => {
                 )}
               </div>
 
-              <p className="text-lg text-black mb-3 font-[family-name:var(--font-space-mono)]">
+              <p className="text-base text-black mb-2 font-[family-name:var(--font-space-mono)]">
                 {personalInfo.title}
               </p>
 
               {/* Contact Info */}
-              <div className="flex text-black flex-wrap gap-4 mb-4">
-                <div className="flex items-center gap-2">
-                  <Mail size={16} />
+              <div className="flex text-black flex-wrap gap-3 mb-3 text-sm">
+                <div className="flex items-center gap-1">
+                  <Mail size={14} />
                   <span>{personalInfo.email}</span>
                 </div>
-                <div className="flex items-center gap-2">
-                  <Phone size={16} />
+                <div className="flex items-center gap-1">
+                  <Phone size={14} />
                   <span>{personalInfo.phone}</span>
                 </div>
-                <div className="flex items-center gap-2">
-                  <MapPin size={16} />
+                <div className="flex items-center gap-1">
+                  <MapPin size={14} />
                   <span>{personalInfo.location}</span>
                 </div>
               </div>
 
               {/* Social Links - Add onClick handlers or wrap with <a> tags to make them functional */}
               {/* Example: <div onClick={() => window.open('https://github.com/yourusername')}> */}
-              <div className="flex gap-3">
+              <div className="flex gap-2">
                 <div
-                  className="flex active:scale-90 items-center gap-2 text-black hover:text-gray-600 transition-colors cursor-pointer"
+                  className="flex active:scale-90 items-center gap-1 text-black hover:text-gray-600 transition-colors cursor-pointer"
                   title="GitHub"
                 >
-                  <Github size={18} />
+                  <Github size={16} />
                 </div>
                 <div
-                  className="flex items-center active:scale-90 gap-2 text-black hover:text-gray-600 transition-colors cursor-pointer"
+                  className="flex items-center active:scale-90 gap-1 text-black hover:text-gray-600 transition-colors cursor-pointer"
                   title="LinkedIn"
                 >
-                  <Linkedin size={18} />
+                  <Linkedin size={16} />
                 </div>
                 <div
-                  className="flex items-center active:scale-90 gap-2 text-black hover:text-gray-600 transition-colors cursor-pointer"
+                  className="flex items-center active:scale-90 gap-1 text-black hover:text-gray-600 transition-colors cursor-pointer"
                   title="Email"
                 >
-                  <Mail size={18} />
+                  <Mail size={16} />
                 </div>
                 <div
-                  className="flex items-center active:scale-90 gap-2 text-black hover:text-gray-600 transition-colors cursor-pointer"
+                  className="flex items-center active:scale-90 gap-1 text-black hover:text-gray-600 transition-colors cursor-pointer"
                   title="Phone"
                 >
-                  <Phone size={18} />
+                  <Phone size={16} />
                 </div>
                 <div
-                  className="flex items-center active:scale-90 gap-2 text-black hover:text-gray-600 transition-colors cursor-pointer"
+                  className="flex items-center active:scale-90 gap-1 text-black hover:text-gray-600 transition-colors cursor-pointer"
                   title="Website"
                 >
-                  <Globe size={18} />
+                  <Globe size={16} />
                 </div>
                 <div
-                  className="flex items-center active:scale-90 gap-2 text-black hover:text-gray-600 transition-colors cursor-pointer"
+                  className="flex items-center active:scale-90 gap-1 text-black hover:text-gray-600 transition-colors cursor-pointer"
                   title="Twitter/X"
                 >
-                  <Twitter size={18} />
+                  <Twitter size={16} />
                 </div>
               </div>
             </div>
           </div>
         </div>
 
-        <div className="grid grid-cols-8 gap-5 p-5">
-          <div className="col-span-2 space-y-5">
+        <div className="grid grid-cols-8 gap-4 p-4">
+          <div className="col-span-2 space-y-4">
        
             {/* About Section */}
-            <div className="bg-white border border-gray-200 rounded-xl p-8">
-              <h2 className="text-2xl font-bold text-black mb-4 font-[family-name:var(--font-orbitron)]">
+            <div className="bg-white border border-gray-200 rounded-lg p-4">
+              <h2 className="text-lg font-bold text-black mb-3 font-[family-name:var(--font-orbitron)]">
                 About
               </h2>
-              <p className="text-black leading-relaxed text-lg">{personalInfo.bio}</p>
+              <p className="text-black leading-relaxed text-sm">{personalInfo.bio}</p>
             </div>
             {/* Skills Section */}
-            <div className="bg-white border border-gray-200 rounded-xl p-6">
-              <h2 className="text-2xl font-bold text-black mb-4 flex items-center gap-3 font-[family-name:var(--font-orbitron)]">
-                <Code className="text-black" />
+            <div className="bg-white border border-gray-200 rounded-lg p-4">
+              <h2 className="text-lg font-bold text-black mb-3 flex items-center gap-2 font-[family-name:var(--font-orbitron)]">
+                <Code className="text-black" size={18} />
                 Technical Skills
               </h2>
-              <div className="flex flex-wrap gap-2">
+              <div className="flex flex-wrap gap-1">
                 {skills.flatMap((skillGroup, groupIndex) =>
                   skillGroup.items.map((skill, skillIndex) => (
                     <div
@@ -413,27 +413,27 @@ const ResumeProfile = () => {
               </div>
             </div>
             {/* Education Section */}
-            <div className="bg-white border border-gray-200 rounded-xl p-8">
-              <h2 className="text-2xl font-bold text-black mb-6 flex items-center gap-3 font-[family-name:var(--font-orbitron)]">
-                <GraduationCap className="text-black" />
+            <div className="bg-white border border-gray-200 rounded-lg p-4">
+              <h2 className="text-lg font-bold text-black mb-3 flex items-center gap-2 font-[family-name:var(--font-orbitron)]">
+                <GraduationCap className="text-black" size={18} />
                 Education
               </h2>
-              <div className="space-y-4">
+              <div className="space-y-3">
                 {education.map((edu, index) => (
                   <div
                     key={index}
-                    className="border-l-4 border-gray-400 pl-6"
+                    className="border-l-4 border-gray-400 pl-3"
                   >
-                    <h3 className="text-xl font-semibold text-black">
+                    <h3 className="text-base font-semibold text-black">
                       {edu.degree}
                     </h3>
                     <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between">
-                      <h4 className="text-lg text-black">{edu.school}</h4>
-                      <span className="text-gray-600 font-[family-name:var(--font-space-mono)]">
+                      <h4 className="text-sm text-black">{edu.school}</h4>
+                      <span className="text-gray-600 text-xs font-[family-name:var(--font-space-mono)]">
                         {edu.year}
                       </span>
                     </div>
-                    <p className="text-black mt-1">{edu.specialization}</p>
+                    <p className="text-black text-xs mt-1">{edu.specialization}</p>
                   </div>
                 ))}
               </div>
@@ -441,12 +441,12 @@ const ResumeProfile = () => {
           </div>
           <div className="col-span-6 space-y-4">
             {/* Experience Section */}
-            <div className="bg-white border border-gray-200 rounded-xl p-8">
-              <h2 className="text-2xl font-bold text-black mb-6 flex items-center gap-3 font-[family-name:var(--font-orbitron)]">
-                <Briefcase className="text-black" />
+            <div className="bg-white border border-gray-200 rounded-lg p-4">
+              <h2 className="text-lg font-bold text-black mb-4 flex items-center gap-2 font-[family-name:var(--font-orbitron)]">
+                <Briefcase className="text-black" size={18} />
                 Professional Experience
               </h2>
-              <div className="space-y-6">
+              <div className="space-y-4">
                 {experience.map((job, index) => (
                   <div
                     key={index}
