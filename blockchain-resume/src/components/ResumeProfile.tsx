@@ -322,38 +322,38 @@ const ResumeProfile = () => {
         {/* Profile Header - Facebook-like */}
         <div className="bg-black backdrop-blur-sm   overflow-hidden">
           {/* Cover Photo */}
-          <div className="h-48 bg-[#20a21c] relative">
+          <div className="h-32 bg-[#20a21c] relative">
             <div className="absolute inset-0 blockchain-grid opacity-30"></div>
           </div>
 
           {/* Profile Info */}
-          <div className="relative px-8 pb-8">
+          <div className="relative px-6 pb-6">
             {/* Profile Picture */}
-            <div className="absolute -top-16 left-8">
-              <div className="w-32 h-32 rounded-full bg-gradient-to-br from-blue-500 border-4 to-purple-600 b flex items-center justify-center">
+            <div className="absolute -top-12 left-6">
+              <div className="w-24 h-24 rounded-full bg-gradient-to-br from-blue-500 border-4 to-purple-600 b flex items-center justify-center">
                 {/* <span className="text-4xl font-bold text-white font-[family-name:var(--font-orbitron)]">
                   {personalInfo.name.split(' ').map(n => n[0]).join('')}
                 </span> */}
                 <Image 
                   src="/images.jpeg" 
                   alt="Profile" 
-                  width={128} 
-                  height={128} 
+                  width={96} 
+                  height={96} 
                   className="rounded-full w-full h-full object-cover" 
                 />
               </div>
             </div>
 
             {/* Name and Title */}
-            <div className="pt-20">
+            <div className="pt-16">
               <div className="flex justify-between items-center">
                 <div>
-                  <h1 className="text-4xl font-bold text-white mb-2 font-[family-name:var(--font-orbitron)]">
+                  <h1 className="text-3xl font-bold text-white mb-2 font-[family-name:var(--font-orbitron)]">
                     {personalInfo.name}
                   </h1>
 
                   {/* Company/Organization - LinkedIn style */}
-                  <div className="flex items-center gap-3 mb-3">
+                  <div className="flex items-center gap-2 mb-2">
                     {personalInfo.status?.type === "OPEN_TO_WORK" ? (
                       // Show university when open to work
                       <>
@@ -366,7 +366,7 @@ const ResumeProfile = () => {
                             className="object-contain"
                           />
                         </div>
-                        <p className="text-lg text-gray-300 font-medium">
+                        <p className="text-base text-gray-300 font-medium">
                           {personalInfo.university}
                         </p>
                       </>
@@ -382,7 +382,7 @@ const ResumeProfile = () => {
                             className="object-contain"
                           />
                         </div>
-                        <p className="text-lg text-gray-300 font-medium">
+                        <p className="text-base text-gray-300 font-medium">
                           {personalInfo.company}
                         </p>
                       </>
@@ -392,9 +392,9 @@ const ResumeProfile = () => {
 
                 {/* Status Badge - LinkedIn style */}
                 {personalInfo.status && (
-                  <div className="mb-4">
+                  <div className="mb-3">
                     <div
-                      className={`inline-flex items-center gap-2 px-4 py-2 rounded-lg ${
+                      className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-lg ${
                         getStatusStyling(personalInfo.status.type).bgColor
                       } ${
                         getStatusStyling(personalInfo.status.type).borderColor
@@ -420,12 +420,12 @@ const ResumeProfile = () => {
                 )}
               </div>
 
-              <p className="text-xl mb-4 font-[family-name:var(--font-space-mono)]">
+              <p className="text-lg mb-3 font-[family-name:var(--font-space-mono)]">
                 {personalInfo.title}
               </p>
 
               {/* Contact Info */}
-              <div className="flex flex-wrap gap-6 mb-6">
+              <div className="flex flex-wrap gap-4 mb-4">
                 <div className="flex items-center gap-2">
                   <Mail size={16} />
                   <span>{personalInfo.email}</span>
@@ -442,42 +442,42 @@ const ResumeProfile = () => {
 
               {/* Social Links - Add onClick handlers or wrap with <a> tags to make them functional */}
               {/* Example: <div onClick={() => window.open('https://github.com/yourusername')}> */}
-              <div className="flex gap-4">
+              <div className="flex gap-3">
                 <div
                   className="flex active:scale-90 items-center gap-2 text-gray-300 hover:text-white transition-colors cursor-pointer"
                   title="GitHub"
                 >
-                  <Github size={20} />
+                  <Github size={18} />
                 </div>
                 <div
                   className="flex items-center active:scale-90 gap-2 text-gray-300 hover:text-blue-400 transition-colors cursor-pointer"
                   title="LinkedIn"
                 >
-                  <Linkedin size={20} />
+                  <Linkedin size={18} />
                 </div>
                 <div
                   className="flex items-center active:scale-90 gap-2 text-gray-300 hover:text-green-400 transition-colors cursor-pointer"
                   title="Email"
                 >
-                  <Mail size={20} />
+                  <Mail size={18} />
                 </div>
                 <div
                   className="flex items-center active:scale-90 gap-2 text-gray-300 hover:text-purple-400 transition-colors cursor-pointer"
                   title="Phone"
                 >
-                  <Phone size={20} />
+                  <Phone size={18} />
                 </div>
                 <div
                   className="flex items-center active:scale-90 gap-2 text-gray-300 hover:text-orange-400 transition-colors cursor-pointer"
                   title="Website"
                 >
-                  <Globe size={20} />
+                  <Globe size={18} />
                 </div>
                 <div
                   className="flex items-center active:scale-90 gap-2 text-gray-300 hover:text-sky-400 transition-colors cursor-pointer"
                   title="Twitter/X"
                 >
-                  <Twitter size={20} />
+                  <Twitter size={18} />
                 </div>
               </div>
             </div>
