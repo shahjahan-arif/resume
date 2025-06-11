@@ -87,8 +87,8 @@ const ResumeProfile = () => {
     email: "shajandevz@gmail.com",
     phone: "+92 (328) 4102931",
     location: "Lahore, Pakistan",
-    github: "github.com/shahjahan-arif",
-    linkedin: "linkedin.com/in/shajan-devz/",
+    github: "https://github.com/shahjahan-arif",
+    linkedin: "https://www.linkedin.com/in/shajan-devz/",
     bio: "My name is Shahjahan, and I am an experienced web developer specializing in the MERN stack. With four years of professional experience, I have worked with reputable organizations like Devzbyte and RVWhale. I hold a BSCS degree and am highly committed to maintaining quality in my work, always prioritizing attention to detail and excellence. In addition to my web development expertise, I also have hands-on experience working with blockchain technologies, particularly on the Solana blockchain. I have contributed to blockchain-based applications, expanding my skill set into the world of decentralized technologies and smart contracts.",
   };
 
@@ -341,44 +341,35 @@ const ResumeProfile = () => {
                 </div>
               </div>
 
-              {/* Social Links - Add onClick handlers or wrap with <a> tags to make them functional */}
-              {/* Example: <div onClick={() => window.open('https://github.com/yourusername')}> */}
+              {/* Social Links */}
               <div className="flex gap-2">
                 <div
                   className="flex active:scale-90 items-center gap-1 text-black hover:text-gray-600 transition-colors cursor-pointer"
                   title="GitHub"
+                  onClick={() => window.open(personalInfo.github, '_blank')}
                 >
                   <Github size={16} />
                 </div>
                 <div
                   className="flex items-center active:scale-90 gap-1 text-black hover:text-gray-600 transition-colors cursor-pointer"
                   title="LinkedIn"
+                  onClick={() => window.open(personalInfo.linkedin, '_blank')}
                 >
                   <Linkedin size={16} />
                 </div>
                 <div
                   className="flex items-center active:scale-90 gap-1 text-black hover:text-gray-600 transition-colors cursor-pointer"
                   title="Email"
+                  onClick={() => window.open(`mailto:${personalInfo.email}`, '_blank')}
                 >
                   <Mail size={16} />
                 </div>
                 <div
                   className="flex items-center active:scale-90 gap-1 text-black hover:text-gray-600 transition-colors cursor-pointer"
                   title="Phone"
+                  onClick={() => window.open(`tel:${personalInfo.phone}`, '_blank')}
                 >
                   <Phone size={16} />
-                </div>
-                <div
-                  className="flex items-center active:scale-90 gap-1 text-black hover:text-gray-600 transition-colors cursor-pointer"
-                  title="Website"
-                >
-                  <Globe size={16} />
-                </div>
-                <div
-                  className="flex items-center active:scale-90 gap-1 text-black hover:text-gray-600 transition-colors cursor-pointer"
-                  title="Twitter/X"
-                >
-                  <Twitter size={16} />
                 </div>
               </div>
             </div>
