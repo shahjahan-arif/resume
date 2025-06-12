@@ -18,6 +18,7 @@ import NFTShowcase from "./NFTShowcase";
 import SmartContractShowcase from "./SmartContractShowcase";
 import ToastProvider from "./ToastProvider";
 import PortfolioSection from "./PortfolioSection";
+import DeadKing from "./DeadKing";
 
 
 const ResumeProfile = () => {
@@ -224,22 +225,21 @@ const ResumeProfile = () => {
           <div className="h-36 bg-[#20a21c] relative horror-cover lightning-enhanced">
             <div className="absolute inset-0 opacity-30"></div>
           </div>
-
+          
           {/* Profile Info */}
           <div className="relative px-4 pb-4">
             {/* Profile Picture */}
             <div className="absolute -top-16 left-4">
               <div className="w-28 h-28 rounded-full bg-white border-4 flex items-center justify-center">
-                {/* <span className="text-4xl font-bold text-black font-[family-name:var(--font-orbitron)]">
-                  {personalInfo.name.split(' ').map(n => n[0]).join('')}
-                </span> */}
+             
                 <Image
-                  src="/images.jpeg"
+                  src="./deadking.svg"
                   alt="Profile"
                   width={300}
                   height={300}
                   className="rounded-full w-full h-full object-cover"
                 />
+          
               </div>
             </div>
 
@@ -437,7 +437,7 @@ const ResumeProfile = () => {
               </div>
             </div>
           </div>
-          <div className="lg:col-span-6 md:col-span-5 space-y-4 sm:mt-4">
+          <div className="lg:col-span-6 md:col-span-5 space-y-4 mt-4 md:mt-0">
             {/* Experience Section */}
             <div className="bg-white border border-gray-200 rounded-lg p-4">
               <h2 className="text-lg font-bold text-black mb-4 flex items-center gap-2 font-[family-name:var(--font-orbitron)]">
