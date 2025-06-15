@@ -1,6 +1,5 @@
 "use client";
 
-import React from "react";
 import Image from "next/image";
 import {
   // Download,
@@ -18,10 +17,28 @@ import NFTShowcase from "./NFTShowcase";
 import SmartContractShowcase from "./SmartContractShowcase";
 import ToastProvider from "./ToastProvider";
 import PortfolioSection from "./PortfolioSection";
-import DeadKing from "./DeadKing";
 
 
 const ResumeProfile = () => {
+  // Lightning effect state
+  // const [showLightning, setShowLightning] = useState(false);
+
+  // Lightning effect timer
+  // useEffect(() => {
+  //   // Random delay between 10-20 seconds
+  //   const delay = Math.random() * 10000 + 10000; // 10-20 seconds
+    
+  //   const timer = setTimeout(() => {
+  //     setShowLightning(true);
+      
+  //     // Hide lightning after 3 seconds
+  //     setTimeout(() => {
+  //       setShowLightning(false);
+  //     }, 3000);
+  //   }, delay);
+
+  //   return () => clearTimeout(timer);
+  // }, []);
 
   const getStatusStyling = (statusType: string) => {
     switch (statusType) {
@@ -199,14 +216,16 @@ const ResumeProfile = () => {
     <div className="h-screen overflow-auto relative">
 
       {/* Lightning Strike Container */}
-      <div className="lightning-container">
-        <div className="screen-flash"></div>
-        <div className="screen-flash"></div>
-        <div className="screen-flash"></div>
-        <div className="lightning-bolt"></div>
-        <div className="lightning-bolt"></div>
-        <div className="lightning-bolt"></div>
-      </div>
+      {/* {showLightning && (
+        <div className="lightning-container">
+          <div className="screen-flash"></div>
+          <div className="screen-flash"></div>
+          <div className="screen-flash"></div>
+          <div className="lightning-bolt"></div>
+          <div className="lightning-bolt"></div>
+          <div className="lightning-bolt"></div>
+        </div>
+      )} */}
 
       {/* Header with download button */}
       <div className="sticky top-0 z-50 bg-white border-b border-gray-300">
